@@ -1,15 +1,16 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import Header from './components/header.js';
+import Main from './components/main.js';
+
 function App() {
   return (
-    <div className="App">
-      <header className="">
-        <Header></Header>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <Main></Main>
+    </>
   );
 }
 
 export default App;
+

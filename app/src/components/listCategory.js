@@ -1,5 +1,6 @@
 import React from 'react';
 import './listCategory.scss';
+
 function ListCategory() {
     return (
         <>

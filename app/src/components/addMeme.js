@@ -1,14 +1,13 @@
 import React from 'react';
 import './listMeme.scss';
-import PreviewMeme from './previewMeme';
-function ListMeme() {
+
+function AddMeme() {
     return (
         <div className="">
             <p className="bd-content-title pl-3">
-                Lista de meme:
+                Agregar Meme:
             </p>
-            <PreviewMeme></PreviewMeme>
         </div>
     );
 }
-export default ListMeme;
+export default AddMmeme;

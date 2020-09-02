@@ -7,5 +7,8 @@
   "devDependencies": {
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "2.1.1"
+  },
+  "dependencies": {
+    "react-router-dom": "^5.2.0"
   }
 }

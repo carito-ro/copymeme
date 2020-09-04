@@ -1,13 +1,21 @@
 import React from 'react';
 import './header.scss';
 class Header extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             islogActive: props.islogActive,
         };
     }
+    showWidget = (widget) => {
+        widget.open();
+    }
     render() {
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: "pancho8725",
+            uploadPreset: "preset_pancho"
+        },
+            (error, result) => { console.log('llego', result.info) });
         console.log(this.state.islogActive);
         if (this.state.islogActive) {
             return (
@@ -21,7 +29,7 @@ class Header extends React.Component {
                         </button>
                         <ul className="dropdown-menu">
                             <li className="nav-item"><a href="/">Inicio</a></li>
-                            <li className="nav-item"><a href="/subirMeme">Subir meme</a></li>
+                            <li className="nav-item" onClick={() => this.showWidget(widget)}><a>Subir meme</a></li>
                             <li className="nav-item"><a href="/login">Cerrar sesión</a></li>
                         </ul>
                     </li>

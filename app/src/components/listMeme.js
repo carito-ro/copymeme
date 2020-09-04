@@ -3,10 +3,9 @@ import './listMeme.scss';
 import PreviewMeme from './previewMeme';
 function ListMeme() {
     return (
-        <div className="">
-            <p className="bd-content-title pl-3">
-                Lista de meme:
-            </p>
+        <div className="listado-memes">
+            <PreviewMeme></PreviewMeme>
+            <PreviewMeme></PreviewMeme>
             <PreviewMeme></PreviewMeme>
         </div>
     );

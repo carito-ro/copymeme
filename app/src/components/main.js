@@ -6,10 +6,10 @@ function Main() {
     return (
         <div className="container-fluid">
             <div className="row vh-100">
-                <div className="col-md-4 p-3 border bg-light">
+                <div className="col-md-4 p-3">
                     <ListCategory></ListCategory>
                 </div>
-                <div className="col-md-8 p-3 border bg-light">
+                <div className="col-md-8 p-3 ">
                     <ListMeme></ListMeme>
                 </div>
 

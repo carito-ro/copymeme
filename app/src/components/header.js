@@ -1,25 +1,25 @@
 import React from 'react';
 import './header.scss';
-import logo from '../assets/images/logo.png';
+
 function Header() {
     return (
-        <header className="bg-top navbar navbar-expand navbar-dark flex-column flex-md-row sticky-top">
-            <a className="navbar-brand text-white" href="/#">
-                <img src={logo} width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy">
-                </img>
-                CopyMeme
+        <nav class="navbar navbar-dark navbar-expand-sm bg-top">
+            <a className="navbar-brand text-white" href="/">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="text-white navbar-brand" href="/#">Home</a>
-                    <a class="text-white  navbar-brand" href="/subirMeme">Subir Meme</a>
-                    <a class="text-white  navbar-brand" href="/perfil">Perfil</a>
-                </div>
-            </div>
-        </header>
+            <li class="dropdown menu dropleft">
+                <button class="btn btn-secondary" id='btSwitch' type="button" data-toggle="dropdown">
+                    <span class="navbar-toggler-icon text-center">
+                        <i class="fas fa-bars"></i>
+                    </span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a href="/">Inicio</a></li>
+                    <li class="nav-item"><a href="/subirMeme">Subir meme</a></li>
+                    <li class="nav-item"><a href="/perfil">Mi Perfil</a></li>
+                    <li class="nav-item"><a href="/logout">Cerrar sesión</a></li>
+                </ul>
+            </li>
+        </nav >
     );
 }
 

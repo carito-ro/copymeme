@@ -4,7 +4,7 @@ import ListCategory from './listCategory';
 import ListMeme from './listMeme';
 function Main() {
     return (
-        <div className="container-fluid ">
+        <div className="container-fluid">
             <div className="row vh-100">
                 <div className="col-md-4 p-3 border bg-light">
                     <ListCategory></ListCategory>

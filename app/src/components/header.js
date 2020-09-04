@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.scss';
 class Header extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             islogActive: props.islogActive,
@@ -22,7 +22,7 @@ class Header extends React.Component {
                         <ul className="dropdown-menu">
                             <li className="nav-item"><a href="/">Inicio</a></li>
                             <li className="nav-item"><a href="/subirMeme">Subir meme</a></li>
-                            <li className="nav-item"><a href="/logout">Cerrar sesión</a></li>
+                            <li className="nav-item"><a href="/login">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </nav>

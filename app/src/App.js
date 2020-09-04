@@ -11,28 +11,34 @@ import {
   //Link,
   Redirect
 } from "react-router-dom";
-
-function App() {
-  return (
-    <>
-      <Header></Header>
-      <Router>
-        <Switch>
-          <Route path="/perfil">
-            <Profile />
-          </Route>
-          <Route path="/subirMeme">
-            <AddMeme />
-          </Route>
-          <Route path="/">
-            <Main />
-          </Route>
-          <Redirect path="/" />
-        </Switch>
-      </Router>
-    </>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      islogActive: false, // true/false
+    };
+  }
+  render() {
+    return (
+      <>
+        <Header islogActive={this.state}></Header>
+        <Router>
+          <Switch>
+            <Route path="/perfil">
+              <Profile />
+            </Route>
+            <Route path="/subirMeme">
+              <AddMeme />
+            </Route>
+            <Route path="/">
+              <Main />
+            </Route>
+            <Redirect path="/#" />
+          </Switch>
+        </Router>
+      </>
+    );
+  }
 }
-
 export default App;
 

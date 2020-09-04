@@ -12,7 +12,6 @@ function Main() {
                 <div className="col-md-8 p-3 ">
                     <ListMeme></ListMeme>
                 </div>
-
             </div>
         </div>
     );

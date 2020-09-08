@@ -11,6 +11,7 @@ import {
   //Link,
   Redirect
 } from "react-router-dom";
+<<<<<<< HEAD
 
 function App() {
   return (
@@ -32,6 +33,42 @@ function App() {
       </Router>
     </>
   );
+=======
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      islogActive: false, // true/false
+    };
+  }
+  render() {
+    return (
+      <>
+        <Header islogActive={this.state.islogActive} > </Header>
+        <Router>
+          <Switch>
+            <Route path="/perfil">
+              <Profile />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/subirMeme">
+              <AddMeme />
+            </Route>
+            <Route path="/">
+              <Main />
+            </Route>
+            <Redirect path="/#" />
+          </Switch>
+        </Router>
+      </>
+    );
+  }
+>>>>>>> c7de7f5... feat: Link para categorias desde una BD
 }
 
 export default App;

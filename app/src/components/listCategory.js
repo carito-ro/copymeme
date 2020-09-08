@@ -6,15 +6,7 @@ function ListCategory(props) {
         <>
             <p className="bd-content-title pl-3"> Explorar categorias:</p>
             <div className="list-group " id="list-tab" role="tablist">
-<<<<<<< HEAD
-                <a className="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Categoria 1</a>
-                <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Categoria 2</a>
-                <a className="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Categoria 3</a>
-                <a className="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Categoria 4</a>
-            </div>
-        </>
-    );
-=======
+
                 {props.categoties.map(
                     (elto) =>
                         <a href={`/${elto.name}`} key={elto.id} className="list-group-item list-group-item-action " data-toggle="list" role="tab" aria-controls="home">
@@ -23,9 +15,9 @@ function ListCategory(props) {
                 )
                 }
             </div>
-        </div>
+        </>
     )
->>>>>>> c7de7f5... feat: Link para categorias desde una BD
+
 }
 
 export default ListCategory;

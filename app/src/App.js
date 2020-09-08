@@ -11,29 +11,6 @@ import {
   //Link,
   Redirect
 } from "react-router-dom";
-<<<<<<< HEAD
-
-function App() {
-  return (
-    <>
-      <Header></Header>
-      <Router>
-        <Switch>
-          <Route path="/perfil">
-            <Profile />
-          </Route>
-          <Route path="/subirMeme">
-            <AddMeme />
-          </Route>
-          <Route path="/">
-            <Main />
-          </Route>
-          <Redirect path="/" />
-        </Switch>
-      </Router>
-    </>
-  );
-=======
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +45,7 @@ class App extends React.Component {
       </>
     );
   }
->>>>>>> c7de7f5... feat: Link para categorias desde una BD
+
 }
 
 export default App;

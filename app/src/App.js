@@ -11,8 +11,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  //Link,
-  Redirect
 } from "react-router-dom";
 class App extends React.Component {
   constructor(props) {
@@ -42,7 +40,6 @@ class App extends React.Component {
             <Route path="/">
               <Main />
             </Route>
-            <Redirect path="/#" />
           </Switch>
         </Router>
       </>

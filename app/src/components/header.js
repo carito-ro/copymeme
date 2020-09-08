@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.scss';
-import logo from '../assets/images/logo.png';
+
 
 class Header extends React.Component {
     constructor(props) {
@@ -30,9 +30,11 @@ class Header extends React.Component {
                             </span>
                         </button>
                         <ul className="dropdown-menu">
+
                             <li className="nav-item"><a href="/#">Inicio</a></li>
                             <li className="nav-item" onClick={() => this.showWidget(widget)}>
                                 <a href="/#">Subir meme</a></li>
+
                             <li className="nav-item"><a href="/login">Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -40,10 +42,12 @@ class Header extends React.Component {
             );
         } else {
             return (
+
                 <nav className="navbar navbar-dark navbar-expand-sm bg-top sticky-top">
                     <a className="navbar-brand text-white" href="/#">
                     </a>
                     <a className="menu btn btn-outline-secondary" href="/login" data-target="#staticBackdrop"> Iniciar sesión</a>
+
                 </nav>
             );
         }

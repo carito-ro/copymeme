@@ -4,6 +4,9 @@ import Header from './components/header.js';
 import Main from './components/main.js';
 import { Profile } from './components/profile';
 import AddMeme from './components/addMeme';
+import Login from './components/login';
+import Register from './components/register';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,8 +48,6 @@ class App extends React.Component {
       </>
     );
   }
-
 }
-
 export default App;
 

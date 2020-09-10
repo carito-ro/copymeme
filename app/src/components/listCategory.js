@@ -1,6 +1,6 @@
 import React from 'react';
 import './listCategory.scss';
-
+import { Link } from "react-router-dom";
 function ListCategory(props) {
     return (
         <div className="listado-categorias">
@@ -8,15 +8,13 @@ function ListCategory(props) {
             <div className="list-group " id="list-tab" role="tablist">
                 {props.categoties.map(
                     (elto) =>
-                        <a href={`/${elto.name}`} key={elto.id} className="list-group-item list-group-item-action " data-toggle="list" role="tab" aria-controls="home">
+                        <Link to={`/memes/${elto.name}`} key={elto.name} className=" list-group-item list-group-item-action ">
                             {elto.name}
-                        </a>
+                        </Link>
                 )
                 }
             </div>
         </div>
     )
-
 }
-
 export default ListCategory;

@@ -37,6 +37,7 @@ class App extends React.Component {
             <Route path="/subirMeme">
               <AddMeme />
             </Route>
+            <Route path="/memes/:name" component={Main} />
             <Route path="/">
               <Main />
             </Route>

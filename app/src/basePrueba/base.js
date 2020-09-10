@@ -1,10 +1,13 @@
 const database = {
     categories: [
-        { id: 1, name: 'Deportes' },
-        { id: 2, name: 'Humor negro' },
-        { id: 3, name: 'Trabajo' },
-        { id: 4, name: 'Too dark to see' },
-        { id: 5, name: 'Random' },
+        { id: 1, name: 'Latest' },
+        { id: 2, name: 'Top' },
+        { id: 3, name: 'Deportes' },
+        { id: 4, name: 'Black' },
+        { id: 5, name: 'Work' },
+        { id: 6, name: 'Too dark to see' },
+        { id: 7, name: 'Random' },
+
     ],
     memes: [
         {
@@ -35,16 +38,5 @@ const database = {
             negativeVotesCount: 100
         }
     ]
-
 }
 export default database;
-/* id*	integer($int64)
-author*	integer($int64)
-title*	string
-image*	string
-description	string
-category*	integer($int64)
-positiveVotesCount	integer($int64)
-
-negativeVotesCount	integer($int64)
-} */

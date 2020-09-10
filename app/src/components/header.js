@@ -29,7 +29,7 @@ class Header extends React.Component {
                         </button>
                         <ul className="dropdown-menu">
                             <li className="nav-item"><a href="/">Inicio</a></li>
-                            <li className="nav-item" onClick={() => this.showWidget(widget)}><a>Subir meme</a></li>
+                            <li className="nav-item" onClick={() => this.showWidget(widget)}><a href="/">Subir meme</a></li>
                             <li className="nav-item"><a href="/login">Cerrar sesión</a></li>
                         </ul>
                     </li>

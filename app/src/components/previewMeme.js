@@ -1,15 +1,15 @@
 import React from 'react';
 import './previewMeme.scss';
-import meme from '../assets/images/MEME.jpg';
-function PreviewMeme() {
+
+function PreviewMeme({ dataMeme }) {
     return (
         <div className="preview-wrapper">
             <div className="row">
                 <div className="col-8">
                     <h4 className="titulo-meme">
-                        Titulo de Meme
+                        Titulo de {dataMeme.title}
                         <br></br>
-                        <small>Titulo de categoría</small>
+                        <small> category {dataMeme.category}</small>
                     </h4>
                 </div>
                 <div className="col-4 d-flex justify-content-end">
@@ -20,8 +20,7 @@ function PreviewMeme() {
             <div className="row">
                 <div className="col-12">
                     <div className="card w-100">
-                        <img src={meme} className="card-img-top" alt="..."></img>
-
+                        <img src={dataMeme.image} className="card-img-top" alt="..."></img>
                     </div>
                 </div>
             </div>
@@ -29,12 +28,14 @@ function PreviewMeme() {
                 <div className="col-6">
                 </div>
                 <div className="col-6 d-flex justify-content-end">
-
-                    <a className="small-link" href="/#"> 12 <i className="fa fa-thumbs-up"></i> 500 <i className="fa fa-thumbs-down"></i></a>
+                    <a className="small-link" href="/#"> {dataMeme.positiveVotesCount} <i className="fa fa-thumbs-up"></i> {dataMeme.negativeVotesCount} <i className="fa fa-thumbs-down"></i></a>
                     <a className="small-link ml-2" href="/#">Ver comentarios</a>
                 </div>
             </div>
         </div>
     );
 }
+
+
+
 export default PreviewMeme;

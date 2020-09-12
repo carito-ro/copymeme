@@ -1,10 +1,9 @@
 import React from 'react';
 import './listMeme.scss';
-import './previewMeme.scss';
 import fetch from 'node-fetch';
 
 class AddMeme extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             imagen: '',

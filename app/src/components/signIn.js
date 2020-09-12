@@ -16,4 +16,4 @@ function Login() {
         </div>
     );
 }
-export default PreviewMeme;
+export default Login;

@@ -4,6 +4,7 @@ import Header from './components/header.js';
 import Main from './components/main.js';
 import { Profile } from './components/profile';
 import AddMeme from './components/addMeme';
+import MemeDetail from './components/memeDetail';
 import Login from './components/login';
 import Register from './components/register';
 
@@ -30,6 +31,9 @@ class App extends React.Component {
             <Route path="/perfil">
               <Profile />
             </Route>
+            <Route path="/meme/:meme">
+              <MemeDetail />
+            </Route>
             <Route path="/login">
               <Login />
             </Route>
@@ -39,7 +43,7 @@ class App extends React.Component {
             <Route path="/subirMeme">
               <AddMeme />
             </Route>
-            <Route path="/memes/:name" component={Main} />
+            <Route path="/memes/:category" component={Main} />
             <Route path="/">
               <Main />
             </Route>

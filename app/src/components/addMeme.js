@@ -1,77 +1,59 @@
 import React from 'react';
 import './listMeme.scss';
+import './previewMeme.scss';
+import fetch from 'node-fetch';
 
 class AddMeme extends React.Component {
     constructor(props) {
         super(props);
-        this.image = React.createRef();
-        this.title = React.createRef();
-        this.category = React.createRef();
-        this.description = React.createRef();
-        this.submit = this.submit.bind(this);
+        this.state = {
+            imagen: '',
+            subioImagen: false
+        };
     }
-    submit(event) {
-        let image = this.nombre.current.value;
-        let title = this.nombre.current.value;
-        let category = this.nombre.current.value;
-        let description = this.nombre.current.value;
-        this.props.addMeme(
-            {
-                title: title,
-                category: category,
-                image: image,
-                description: description
-            });
-        event.preventDefault();
+    showWidget = (widget) => {
+        widget.open();
     }
-    render() {
-        return (
-            <div className="">
-                <p className="bd-content-title pl-3">
-                    Agregar Meme:
-             </p>
-                <form>
-                    <div className="row">
-                        <div className="col-7">
-                            <input type="text"
-                                name="image"
-                                ref={this.image}
-                                className="form-control"
-                                placeholder="Imagen" />
-                        </div>
-                        <div className="col-7">
-                            <input type="text"
-                                name="title"
-                                ref={this.title}
-                                className="form-control"
-                                placeholder="Titulo" />
-                        </div>
-                        <div className="col-7">
-                            <input type="text"
-                                name="category"
-                                ref={this.category}
-                                className="form-control"
-                                placeholder="Categoria" />
-                        </div>
-                        <div className="col-7">
-                            <input type="text"
-                                name="description"
-                                ref={this.description}
-                                className="form-control"
-                                placeholder="Descripción" />
-                        </div>
-                        <div className="col-7">
-                            <button type="submit"
-                                className="btn btn-info mb-2"
-                                onClick={this.submit}>
-                                agregar </button>
-                        </div>
 
-                    </div>
-                </form>
+    chekcUpload = (result) => {
+        if (result.event === 'success') {
+            this.setState({ imagen: result.info.secure_url, subioImagen: true });
+        }
+    }
+
+    render() {
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: "pancho8725",
+            uploadPreset: "preset_pancho"
+        },
+            (error, result) => {
+                this.chekcUpload(result)
+            });
+        return (
+            <div className="row  d-flex justify-content-center align-items-center">
+                <div class="form">
+                    <form class="form">
+                        <input type="text" placeholder="Titulo" />
+                        <select class="custom-select">
+                            <option selected>Categorias</option>
+                            <option value="1">Deportes</option>
+                            <option value="2">Humor Negro   </option>
+                            <option value="3">Trabajo</option>
+                            <option value="3">To dark to see</option>
+                        </select>
+                        <img src={this.state.imagen} className="card-img-top w-80 h-80"></img>
+                        {!this.state.subioImagen &&
+                            <button type="button" class="btn btn-primary" onClick={() => this.showWidget(widget)}>Añadir Meme</button>
+                        }
+                        {this.state.subioImagen &&
+                            <button type="button" class="btn btn-primary">Agregar</button>
+                        }
+                    </form>
+                </div>
             </div>
         )
     }
+
 }
 
 export default AddMeme;

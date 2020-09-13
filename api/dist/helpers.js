@@ -58,8 +58,8 @@ var helpers = {
 
     return getAll;
   }(),
-  insert: function () {
-    var _insert = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(table, object, req, res) {
+  getOne: function () {
+    var _getOne = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(table, query, req, res) {
       var db, collection, resultado;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -73,11 +73,13 @@ var helpers = {
               db = _context2.sent;
               collection = db.collection(table);
               _context2.next = 7;
-              return collection.insertOne(object);
+              return collection.findOne(query);
 
             case 7:
               resultado = _context2.sent;
-              res.json(resultado.ops[0]);
+              resultado.toArray(function (error, documents) {
+                res.json(documents);
+              });
               _context2.next = 14;
               break;
 
@@ -96,14 +98,14 @@ var helpers = {
       }, _callee2, null, [[0, 11]]);
     }));
 
-    function insert(_x5, _x6, _x7, _x8) {
-      return _insert.apply(this, arguments);
+    function getOne(_x5, _x6, _x7, _x8) {
+      return _getOne.apply(this, arguments);
     }
 
-    return insert;
+    return getOne;
   }(),
-  update: function () {
-    var _update = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(table, query, data, req, res) {
+  insert: function () {
+    var _insert = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(table, object, req, res) {
       var db, collection, resultado;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
@@ -117,23 +119,11 @@ var helpers = {
               db = _context3.sent;
               collection = db.collection(table);
               _context3.next = 7;
-              return collection.findOneAndUpdate(query, {
-                $set: data
-              }, {
-                returnOriginal: false
-              });
+              return collection.insertOne(object);
 
             case 7:
               resultado = _context3.sent;
-
-              if (resultado.value) {
-                res.json(resultado.value);
-              } else {
-                res.json({
-                  ok: false
-                });
-              }
-
+              res.json(resultado.ops[0]);
               _context3.next = 14;
               break;
 
@@ -152,14 +142,14 @@ var helpers = {
       }, _callee3, null, [[0, 11]]);
     }));
 
-    function update(_x9, _x10, _x11, _x12, _x13) {
-      return _update.apply(this, arguments);
+    function insert(_x9, _x10, _x11, _x12) {
+      return _insert.apply(this, arguments);
     }
 
-    return update;
+    return insert;
   }(),
-  "delete": function () {
-    var _delete2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(table, query, req, res) {
+  update: function () {
+    var _update = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(table, query, data, req, res) {
       var db, collection, resultado;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
@@ -173,15 +163,17 @@ var helpers = {
               db = _context4.sent;
               collection = db.collection(table);
               _context4.next = 7;
-              return collection.deleteOne(query);
+              return collection.findOneAndUpdate(query, {
+                $set: data
+              }, {
+                returnOriginal: false
+              });
 
             case 7:
               resultado = _context4.sent;
 
-              if (resultado.deletedCount) {
-                res.json({
-                  ok: true
-                });
+              if (resultado.value) {
+                res.json(resultado.value);
               } else {
                 res.json({
                   ok: false
@@ -206,7 +198,61 @@ var helpers = {
       }, _callee4, null, [[0, 11]]);
     }));
 
-    function _delete(_x14, _x15, _x16, _x17) {
+    function update(_x13, _x14, _x15, _x16, _x17) {
+      return _update.apply(this, arguments);
+    }
+
+    return update;
+  }(),
+  "delete": function () {
+    var _delete2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(table, query, req, res) {
+      var db, collection, resultado;
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              _context5.next = 3;
+              return connection();
+
+            case 3:
+              db = _context5.sent;
+              collection = db.collection(table);
+              _context5.next = 7;
+              return collection.deleteOne(query);
+
+            case 7:
+              resultado = _context5.sent;
+
+              if (resultado.deletedCount) {
+                res.json({
+                  ok: true
+                });
+              } else {
+                res.json({
+                  ok: false
+                });
+              }
+
+              _context5.next = 14;
+              break;
+
+            case 11:
+              _context5.prev = 11;
+              _context5.t0 = _context5["catch"](0);
+              res.json({
+                error: _context5.t0
+              });
+
+            case 14:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 11]]);
+    }));
+
+    function _delete(_x18, _x19, _x20, _x21) {
       return _delete2.apply(this, arguments);
     }
 

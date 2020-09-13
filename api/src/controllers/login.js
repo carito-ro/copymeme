@@ -9,6 +9,7 @@ const router = express.Router(),
 router.post('/', async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
+  console.log(email);
   try {
     let query = { email: email };
     const db = await connection();
@@ -18,7 +19,7 @@ router.post('/', async function (req, res) {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
             res.json({
-              error: err,
+              message: err,
             });
           }
           if (result) {
@@ -30,20 +31,33 @@ router.post('/', async function (req, res) {
             });
             user.password = '';
             res.json({
-              mensaje: 'Autenticación correcta',
+              message: 'Autenticación correcta',
               user: user,
               token: token,
             });
           } else {
-            res.json({ mensaje: 'Usuario o contraseña incorrectos' });
+            res.json({
+              message: 'Usuario o contraseña incorrectos',
+              user: null,
+              token: null,
+            });
           }
         });
       } else {
-        res.json({ mensaje: 'Usuario o contraseña incorrectos' });
+        res.json({
+          message: 'Usuario o contraseña incorrectos',
+          user: null,
+          token: null,
+        });
       }
     });
   } catch (e) {
     console.log(e); // 30
+    res.json({
+      message: e,
+      user: null,
+      token: null,
+    });
   }
 });
 

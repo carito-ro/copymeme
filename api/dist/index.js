@@ -16,14 +16,24 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+
+  next();
+});
 var PORT = 5000;
 app.listen(PORT, function () {
   console.log("server running on port ".concat(PORT));
 });
 app.get('/', function (req, res) {
   res.send('Inicio');
-}); // 6
-
+});
 var rutasProtegidas = express.Router();
 rutasProtegidas.use(function (req, res, next) {
   var token = req.headers['access-token'];

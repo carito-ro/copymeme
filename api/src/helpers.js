@@ -5,7 +5,21 @@ export const helpers = {
     try {
       const db = await connection();
       var collection = db.collection(table);
+
       const resultado = await collection.find(query);
+      resultado.toArray(function (error, documents) {
+        res.json(documents);
+      });
+    } catch (err) {
+      res.json({ error: err });
+    }
+  },
+  getOne: async function (table, query, req, res) {
+    try {
+      const db = await connection();
+      var collection = db.collection(table);
+
+      const resultado = await collection.findOne(query);
       resultado.toArray(function (error, documents) {
         res.json(documents);
       });

@@ -38,17 +38,17 @@ router.get('/', /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
-router.get('/:nombre', /*#__PURE__*/function () {
+router.get('/:email', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var nombre;
+    var email;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            nombre = req.params.nombre;
+            email = req.params.email;
 
             _helpers.helpers.getAll('users', {
-              nombre: nombre
+              email: email
             }, req, res);
 
           case 2:
@@ -65,12 +65,12 @@ router.get('/:nombre', /*#__PURE__*/function () {
 }());
 router.post('/', /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
-    var alumno;
+    var user;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            alumno = req.body;
+            user = req.body;
             bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
               if (err) {
                 res.json({
@@ -78,9 +78,9 @@ router.post('/', /*#__PURE__*/function () {
                 });
               }
 
-              alumno.password = hashedPass;
+              user.password = hashedPass;
 
-              _helpers.helpers.insert('users', alumno, req, res);
+              _helpers.helpers.insert('users', user, req, res);
             });
 
           case 2:

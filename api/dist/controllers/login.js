@@ -28,23 +28,24 @@ router.post('/', /*#__PURE__*/function () {
           case 0:
             email = req.body.email;
             password = req.body.password;
-            _context.prev = 2;
+            console.log(email);
+            _context.prev = 3;
             query = {
               email: email
             };
-            _context.next = 6;
+            _context.next = 7;
             return connection();
 
-          case 6:
+          case 7:
             db = _context.sent;
             collection = db.collection('users');
-            _context.next = 10;
+            _context.next = 11;
             return collection.findOne(query).then(function (user) {
               if (user) {
                 bcrypt.compare(password, user.password, function (err, result) {
                   if (err) {
                     res.json({
-                      error: err
+                      message: err
                     });
                   }
 
@@ -57,38 +58,48 @@ router.post('/', /*#__PURE__*/function () {
                     });
                     user.password = '';
                     res.json({
-                      mensaje: 'Autenticación correcta',
+                      message: 'Autenticación correcta',
                       user: user,
                       token: token
                     });
                   } else {
                     res.json({
-                      mensaje: 'Usuario o contraseña incorrectos'
+                      message: 'Usuario o contraseña incorrectos',
+                      user: null,
+                      token: null
                     });
                   }
                 });
               } else {
                 res.json({
-                  mensaje: 'Usuario o contraseña incorrectos'
+                  message: 'Usuario o contraseña incorrectos',
+                  user: null,
+                  token: null
                 });
               }
             });
 
-          case 10:
-            _context.next = 15;
+          case 11:
+            _context.next = 17;
             break;
 
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](2);
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](3);
             console.log(_context.t0); // 30
 
-          case 15:
+            res.json({
+              message: _context.t0,
+              user: null,
+              token: null
+            });
+
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 12]]);
+    }, _callee, null, [[3, 13]]);
   }));
 
   return function (_x, _x2) {

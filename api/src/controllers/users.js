@@ -7,21 +7,21 @@ router.get('/', async function (req, res) {
   helpers.getAll('users', {}, req, res);
 });
 
-router.get('/:nombre', async function (req, res) {
-  const nombre = req.params.nombre;
-  helpers.getAll('users', { nombre: nombre }, req, res);
+router.get('/:email', async function (req, res) {
+  const email = req.params.email;
+  helpers.getAll('users', { email: email }, req, res);
 });
 
 router.post('/', async function (req, res) {
-  const alumno = req.body;
+  const user = req.body;
   bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
     if (err) {
       res.json({
         error: err,
       });
     }
-    alumno.password = hashedPass;
-    helpers.insert('users', alumno, req, res);
+    user.password = hashedPass;
+    helpers.insert('users', user, req, res);
   });
 });
 

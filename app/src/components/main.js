@@ -1,5 +1,5 @@
 import React from 'react';
-import './main.scss';
+import '../assets/css/styles.scss';
 import ListCategory from './listCategory';
 import datos from '../basePrueba/base';
 import ListMeme from './listMeme';

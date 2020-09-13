@@ -1,5 +1,5 @@
 import React from 'react';
-import './memePreview.scss';
+import '../assets/css/styles.scss';
 import { useParams } from "react-router-dom";
 import datos from '../basePrueba/base';
 import ListComment from './listComment';

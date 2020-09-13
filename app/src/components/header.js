@@ -1,7 +1,8 @@
 import React from 'react';
-import './header.scss';
+import '../assets/css/styles.scss';
+
 class Header extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             islogActive: props.islogActive,

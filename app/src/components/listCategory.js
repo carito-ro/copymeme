@@ -1,10 +1,10 @@
 import React from 'react';
-import './listCategory.scss';
+import '../assets/css/styles.scss';
 
 import { Link } from "react-router-dom";
 class ListCategory extends React.Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.selectedCategory = React.createRef();
     }

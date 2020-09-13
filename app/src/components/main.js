@@ -6,16 +6,15 @@ import ListMeme from './listMeme';
 
 import { useParams } from "react-router-dom";
 function Main() {
-    let { name } = useParams();
+    let { category } = useParams();
     return (
         <div className="container-fluid">
             <div className="row vh-100">
                 <div className="col-md-4 p-3">
-                    <ListCategory categoties={datos.categories}></ListCategory>
+                    <ListCategory categories={datos.categories} categoryView={category}></ListCategory>
                 </div>
                 <div className="col-md-8 p-3 ">
-                    Parametro name es: {name}
-                    <ListMeme categoryView={name}></ListMeme>
+                    <ListMeme categoryView={category}></ListMeme>
                 </div>
             </div>
         </div>

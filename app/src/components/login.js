@@ -59,7 +59,7 @@ class Login extends React.Component {
             this.setState({
               isUserAuthenticated: true
             });
-            this.props.loginUser(response.user);
+            this.props.loginUser(response.user, response.token);
           }
         } else {
           this.setState({
@@ -70,73 +70,74 @@ class Login extends React.Component {
       });
   };
   render() {
+    let alert = null;
     if (this.state.message) {
-      let alert = <div className="alert alert-danger" role="alert">
+      alert = <div className="alert alert-danger" role="alert">
         {this.state.message}
       </div>
     }
-    else {
-      let alert = null;
-    };
     return <userContext.Consumer>
-      {({ user }) => {
-        if (user.name) {
-          return <Redirect to="/" />;
-        } else {
-          return (
-            <div className="login-wrapper">
-              <div className="row">
-                <div className="d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
-                  <img
-                    id="img2"
-                    src={foto}
-                    className="card-img-top w-50 h-50"
-                    alt="sin-imagen2"
-                  ></img>
-                  <img
-                    id="img1"
-                    src={foto2}
-                    className="card-img-top w-50 h-50"
-                    alt="foto2"
-                  ></img>
-                </div>
-                <div className="col-sm-12 col-md-6 d-flex justify-content-left align-items-center">
-                  <div className="form">
-                    <div className="logo"></div>
-                    {alert}
-                    <form className="login-form" onSubmit={this.handleSubmit}>
-                      <input
-                        type="text"
-                        placeholder="email"
-                        value={this.state.email}
-                        onChange={this.handleEmailChange}
-                        required
-                        maxLength="40"
-                      />
-                      <input
-                        type="password"
-                        placeholder="contraseña"
-                        value={this.state.password}
-                        onChange={this.handlePasswordChange}
-                        required
-                        maxLength="15"
-                      />
-                      <input
-                        className="submit"
-                        type="submit"
-                        value="Iniciar sesión"
-                      />
-                      <hr></hr>
-                      <a className="yellow" href="/register">
-                        Registrarme
-                </a>
-                    </form>
+      {
+        ({ authenticated }) => {
+          if (authenticated) {
+            return <Redirect to="/" />;
+          } else {
+            return (
+              <>
+                <div className="login-wrapper">
+                  <div className="row">
+                    <div className="d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
+                      <img
+                        id="img2"
+                        src={foto}
+                        className="card-img-top w-50 h-50"
+                        alt="sin-imagen2"
+                      ></img>
+                      <img
+                        id="img1"
+                        src={foto2}
+                        className="card-img-top w-50 h-50"
+                        alt="foto2"
+                      ></img>
+                    </div>
+                    <div className="col-sm-12 col-md-6 d-flex justify-content-left align-items-center">
+                      <div className="form">
+                        <div className="logo"></div>
+                        {alert}
+                        <form className="login-form" onSubmit={this.handleSubmit}>
+                          <input
+                            type="text"
+                            placeholder="email"
+                            value={this.state.email}
+                            onChange={this.handleEmailChange}
+                            required
+                            maxLength="40"
+                          />
+                          <input
+                            type="password"
+                            placeholder="contraseña"
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                            required
+                            maxLength="15"
+                          />
+                          <input
+                            className="submit"
+                            type="submit"
+                            value="Iniciar sesión"
+                          />
+                          <hr></hr>
+                          <a className="yellow" href="/register">
+                            Registrarme
+                        </a>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>)
+              </>)
+          }
         }
-      }
       }
     </userContext.Consumer>;
   }

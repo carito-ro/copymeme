@@ -3,6 +3,7 @@ import '../assets/css/styles.scss';
 import { useParams } from "react-router-dom";
 import datos from '../basePrueba/base';
 import ListComment from './listComment';
+import VoteMemes from './voteMemes';
 function MemeDetail() {
 
     let { meme } = useParams();
@@ -22,8 +23,7 @@ function MemeDetail() {
                                 </h4>
                             </div>
                             <div className="col-4 d-flex justify-content-end">
-                                <button className="btn btn-vote-up mr-1"><i className="fa fa-thumbs-up"></i></button>
-                                <button className="btn btn-vote-down"><i className="fa fa-thumbs-down"></i></button>
+                                <VoteMemes></VoteMemes>
                             </div>
                         </div>
                         <div className="row">

@@ -19,30 +19,30 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      islogActive: false,
-      user: {}
+      user: {},
+      authenticated: false
     };
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
   }
 
   logout() {
-    this.setState({ user: {}, authenticated: false });
+    this.setState({ user: {}, authenticated: false, token: '' });
   }
 
-  login(loggedUser) {
-    this.setState({ user: loggedUser, authenticated: true });
+  login(loggedUser, authToken) {
+    this.setState({ user: loggedUser, authenticated: true, token: authToken });
   }
 
   render() {
     const value = {
       user: this.state.user,
-      logoutUser: this.logout,
-      loginUser: this.login
+      authenticated: this.state.authenticated,
+      logout: this.logout
     }
     return (
       <userContext.Provider value={value}>
-        <Header islogActive={this.state}></Header>
+        <Header></Header>
         <Router>
           <Switch>
             <Route path="/perfil">

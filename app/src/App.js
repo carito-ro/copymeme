@@ -16,7 +16,7 @@ import {
   Redirect
 } from "react-router-dom";
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       islogActive: false, // true/false
@@ -47,7 +47,7 @@ class App extends React.Component {
             <Route path="/">
               <Main />
             </Route>
-            <Redirect path="/#" />
+            <Redirect to="/" />
           </Switch>
         </Router>
       </>

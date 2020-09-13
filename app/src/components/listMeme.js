@@ -4,7 +4,7 @@ import MemePreview from './memePreview';
 import datos from '../basePrueba/base';
 
 class ListMeme extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             lastCategoryView: null,
@@ -16,7 +16,7 @@ class ListMeme extends React.Component {
     componentDidMount() {
         if (this.state.lastCategoryView !== this.props.categoryView) {
             if (this.props.categoryView) {
-                this.setState({ memesFiltrados: datos.memes.filter(element => element.category == this.state.categoryView), lastCategoryView: this.props.categoryView });
+                this.setState({ memesFiltrados: datos.memes.filter(element => element.category === parseInt(this.state.categoryView)), lastCategoryView: this.props.categoryView });
             }
         }
     }
@@ -24,7 +24,7 @@ class ListMeme extends React.Component {
     componentDidUpdate() {
         if (this.state.lastCategoryView !== this.props.categoryView) {
             if (this.props.categoryView) {
-                this.setState({ memesFiltrados: datos.memes.filter(element => element.category == this.props.categoryView), lastCategoryView: this.props.categoryView });
+                this.setState({ memesFiltrados: datos.memes.filter(element => element.category === parseInt(this.props.categoryView)), lastCategoryView: this.props.categoryView });
             } else {
                 this.setState({ memesFiltrados: datos.memes, lastCategoryView: this.props.categoryView });
             }

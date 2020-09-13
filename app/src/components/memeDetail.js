@@ -2,17 +2,17 @@ import React from 'react';
 import './memePreview.scss';
 import { useParams } from "react-router-dom";
 import datos from '../basePrueba/base';
-
+import ListComment from './listComment';
 function MemeDetail() {
 
     let { meme } = useParams();
-    let objetoMeme = datos.memes.find(element => element.id == meme);
+    let objetoMeme = datos.memes.find(element => element.id === parseInt(meme));
 
     return (
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="col-8 d-flex justify-content-center align-items-center">
-                    <div className="preview-wrapper w-75 mt-5">
+        <div className="container-fluid ">
+            <div className="row">
+                <div className=" col-12 col-md-7 d-flex justify-content-center align-items-center">
+                    <div className=" w-100 ml-5 mr-sm-5 mt-5">
                         <div className="row">
                             <div className="col-8">
                                 <h4 className="titulo-meme">
@@ -42,6 +42,9 @@ function MemeDetail() {
                         </div>
 
                     </div>
+                </div>
+                <div className=" col-12 mh-100 col-md-5 pt-5 d-flex justify-content-center align-items-top">
+                    <ListComment idMeme={objetoMeme.id} ></ListComment>
                 </div>
             </div>
         </div>

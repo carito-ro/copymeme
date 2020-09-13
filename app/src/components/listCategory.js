@@ -4,7 +4,7 @@ import './listCategory.scss';
 import { Link } from "react-router-dom";
 class ListCategory extends React.Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.selectedCategory = React.createRef();
     }
@@ -22,7 +22,7 @@ class ListCategory extends React.Component {
                 <div className="list-group " id="list-tab" role="tablist">
                     {this.props.categories.map(
                         (category) => {
-                            if (category.id == this.props.categoryView) {
+                            if (category.id === parseInt(this.props.categoryView)) {
                                 return <Link ref={this.selectedCategory} to={`/memes/${category.id}`} key={category.name} className="list-group-item list-group-item-action ">
                                     {category.name}
                                 </Link>

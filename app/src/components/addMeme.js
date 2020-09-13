@@ -1,9 +1,8 @@
 import React from 'react';
 import './listMeme.scss';
-import fetch from 'node-fetch';
 
 class AddMeme extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             imagen: '',
@@ -30,22 +29,22 @@ class AddMeme extends React.Component {
             });
         return (
             <div className="row  d-flex justify-content-center align-items-center">
-                <div class="form">
-                    <form class="form">
+                <div className="form">
+                    <form className="form">
                         <input type="text" placeholder="Titulo" />
-                        <select class="custom-select">
+                        <select className="custom-select">
                             <option selected>Categorias</option>
                             <option value="1">Deportes</option>
                             <option value="2">Humor Negro   </option>
                             <option value="3">Trabajo</option>
                             <option value="3">To dark to see</option>
                         </select>
-                        <img src={this.state.imagen} className="card-img-top w-80 h-80"></img>
+                        <img src={this.state.imagen} alt="Imagen" className="card-img-top w-80 h-80"></img>
                         {!this.state.subioImagen &&
-                            <button type="button" class="btn btn-primary" onClick={() => this.showWidget(widget)}>Añadir Meme</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.showWidget(widget)}>Añadir Meme</button>
                         }
                         {this.state.subioImagen &&
-                            <button type="button" class="btn btn-primary">Agregar</button>
+                            <button type="button" className="btn btn-primary">Agregar</button>
                         }
                     </form>
                 </div>

@@ -7,25 +7,42 @@ import AddMeme from './components/addMeme';
 import MemeDetail from './components/memeDetail';
 import Login from './components/login';
 import Register from './components/register';
+import { userContext } from './userContext';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  //Link,
   Redirect
 } from "react-router-dom";
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      islogActive: false, // true/false
+      user: {},
+      authenticated: false
     };
+    this.logout = this.logout.bind(this);
+    this.login = this.login.bind(this);
   }
+
+  logout() {
+    this.setState({ user: {}, authenticated: false, token: '' });
+  }
+
+  login(loggedUser, authToken) {
+    this.setState({ user: loggedUser, authenticated: true, token: authToken });
+  }
+
   render() {
+    const value = {
+      user: this.state.user,
+      authenticated: this.state.authenticated,
+      logout: this.logout
+    }
     return (
-      <>
-        <Header islogActive={this.state}></Header>
+      <userContext.Provider value={value}>
+        <Header></Header>
         <Router>
           <Switch>
             <Route path="/perfil">
@@ -34,8 +51,8 @@ class App extends React.Component {
             <Route path="/meme/:meme">
               <MemeDetail />
             </Route>
-            <Route path="/login">
-              <Login />
+            <Route path="/login" >
+              <Login loginUser={this.login} />
             </Route>
             <Route path="/register">
               <Register />
@@ -50,9 +67,8 @@ class App extends React.Component {
             <Redirect to="/" />
           </Switch>
         </Router>
-      </>
+      </userContext.Provider>
     );
   }
 }
 export default App;
-

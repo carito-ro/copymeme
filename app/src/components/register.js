@@ -1,6 +1,5 @@
 import React from 'react';
 import '../assets/css/styles.scss';
-import logo from '../assets/images/logo-black.png';
 
 class Register extends React.Component {
   constructor (props) {
@@ -112,7 +111,7 @@ class Register extends React.Component {
 
   render() {
     if (this.state.message) {
-      alert = <div class="alert alert-danger" role="alert">
+      alert = <div className="alert alert-danger" role="alert">
         {this.state.message}
       </div>
     }
@@ -120,15 +119,15 @@ class Register extends React.Component {
       alert = null;
     }
     return (
-      <div class="register-wrapper">
+      <div className="register-wrapper">
         <div className="row">
           <div className="col-sm-12 d-flex justify-content-center align-items-center">
-            <div class="form">
-              <div class="logo"></div>
+            <div className="form">
+              <div className="logo"></div>
               {alert}
-              <form class="login-form" onSubmit={this.handleSubmit}>
-                <div class="row">
-                  <div class="col-12">
+              <form className="login-form" onSubmit={this.handleSubmit}>
+                <div className="row">
+                  <div className="col-12">
                     <input
                       type="text"
                       placeholder="Email"
@@ -138,7 +137,7 @@ class Register extends React.Component {
                       maxLength="40"
                     />
                   </div>
-                  <div class="col-12">
+                  <div className="col-12">
                     <input
                       type="text"
                       placeholder="Nombre completo"
@@ -149,8 +148,8 @@ class Register extends React.Component {
                     />
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-6">
+                <div className="row">
+                  <div className="col-6">
                     <input
                       type="password"
                       placeholder="Contraseña"
@@ -160,7 +159,7 @@ class Register extends React.Component {
                       maxLength="15"
                     />
                   </div>
-                  <div class="col-6">
+                  <div className="col-6">
                     <input
                       type="password"
                       placeholder="Confirme contraseña"

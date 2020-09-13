@@ -2,8 +2,8 @@ import React from 'react';
 import '../assets/css/styles.scss';
 import foto from '../assets/images/meme1.png';
 import foto2 from '../assets/images/meme2.jpg';
-import logo from '../assets/images/logo-black.png';
 import { Redirect } from 'react-router-dom';
+import { userContext } from '../userContext';
 
 class Login extends React.Component {
   constructor (props) {
@@ -57,9 +57,9 @@ class Login extends React.Component {
             });
           } else {
             this.setState({
-              isUserAuthenticated: true,
-              message: response.message,
+              isUserAuthenticated: true
             });
+            this.props.loginUser(response.user, response.token);
           }
         } else {
           this.setState({
@@ -70,69 +70,76 @@ class Login extends React.Component {
       });
   };
   render() {
+    let alert = null;
     if (this.state.message) {
-      alert = <div class="alert alert-danger" role="alert">
+      alert = <div className="alert alert-danger" role="alert">
         {this.state.message}
       </div>
     }
-    else {
-      alert = null;
-    }
-    return this.state.isUserAuthenticated ? (
-      <Redirect to="/" />
-    ) : (
-        <div class="login-wrapper">
-          <div className="row">
-            <div className="d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
-              <img
-                id="img2"
-                src={foto}
-                className="card-img-top w-50 h-50"
-                alt="sin-imagen2"
-              ></img>
-              <img
-                id="img1"
-                src={foto2}
-                className="card-img-top w-50 h-50"
-                alt="foto2"
-              ></img>
-            </div>
-            <div className="col-sm-12 col-md-6 d-flex justify-content-left align-items-center">
-              <div className="form">
-                <div className="logo"></div>
-                {alert}
-                <form className="login-form" onSubmit={this.handleSubmit}>
-                  <input
-                    type="text"
-                    placeholder="email"
-                    value={this.state.email}
-                    onChange={this.handleEmailChange}
-                    required
-                    maxLength="40"
-                  />
-                  <input
-                    type="password"
-                    placeholder="contraseña"
-                    value={this.state.password}
-                    onChange={this.handlePasswordChange}
-                    required
-                    maxLength="15"
-                  />
-                  <input
-                    className="submit"
-                    type="submit"
-                    value="Iniciar sesión"
-                  />
-                  <hr></hr>
-                  <a className="yellow" href="/register">
-                    Registrarme
-                </a>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+    return <userContext.Consumer>
+      {
+        ({ authenticated }) => {
+          if (authenticated) {
+            return <Redirect to="/" />;
+          } else {
+            return (
+              <>
+                <div className="login-wrapper">
+                  <div className="row">
+                    <div className="d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
+                      <img
+                        id="img2"
+                        src={foto}
+                        className="card-img-top w-50 h-50"
+                        alt="sin-imagen2"
+                      ></img>
+                      <img
+                        id="img1"
+                        src={foto2}
+                        className="card-img-top w-50 h-50"
+                        alt="foto2"
+                      ></img>
+                    </div>
+                    <div className="col-sm-12 col-md-6 d-flex justify-content-left align-items-center">
+                      <div className="form">
+                        <div className="logo"></div>
+                        {alert}
+                        <form className="login-form" onSubmit={this.handleSubmit}>
+                          <input
+                            type="text"
+                            placeholder="email"
+                            value={this.state.email}
+                            onChange={this.handleEmailChange}
+                            required
+                            maxLength="40"
+                          />
+                          <input
+                            type="password"
+                            placeholder="contraseña"
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                            required
+                            maxLength="15"
+                          />
+                          <input
+                            className="submit"
+                            type="submit"
+                            value="Iniciar sesión"
+                          />
+                          <hr></hr>
+                          <a className="yellow" href="/register">
+                            Registrarme
+                        </a>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>)
+          }
+        }
+      }
+    </userContext.Consumer>;
   }
 }
 

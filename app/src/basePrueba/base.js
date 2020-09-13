@@ -46,6 +46,57 @@ const database = {
             positiveVotesCount: 3433,
             negativeVotesCount: 100
         }
+    ],
+    comments: [
+        {
+            id: 1,
+            content: "Esto es muy gracioso 1",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
+        {
+            id: 2,
+            content: "Esto es muy gracioso 2",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
+        {
+            id: 3,
+            content: "Esto es muy gracioso 3",
+            author: "Anonimus",
+            meme: 1,
+            parent: ""
+        },
+        {
+            id: 4,
+            content: "Esto es muy gracioso 4",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
+        {
+            id: 5,
+            content: "Esto es muy gracioso 5",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
+        {
+            id: 6,
+            content: "Esto es muy gracioso 6",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
+        {
+            id: 7,
+            content: "Esto es muy gracioso 7",
+            author: "Anonimus",
+            meme: 2,
+            parent: ""
+        },
     ]
 }
 export default database;

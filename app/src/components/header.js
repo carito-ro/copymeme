@@ -19,7 +19,7 @@ class Header extends React.Component {
         console.log(this.state.islogActive);
         if (this.state.islogActive) {
             return (
-                <nav className="navbar navbar-dark navbar-expand-sm bg-top">
+                <nav className="navbar navbar-dark navbar-expand-sm bg-top sticky-top">
                     <a className="navbar-brand text-white" href="/">
                     </a>
                     <li className="dropdown menu dropleft">
@@ -37,7 +37,7 @@ class Header extends React.Component {
             );
         } else {
             return (
-                <nav className="navbar navbar-dark navbar-expand-sm bg-top">
+                <nav className="navbar navbar-dark navbar-expand-sm bg-top sticky-top">
                     <a className="navbar-brand text-white" href="/#">
                     </a>
                     <button type="button" className="menu btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">

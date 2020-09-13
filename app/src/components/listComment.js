@@ -7,7 +7,8 @@ class ListComment extends React.Component {
         super(props);
         this.state = {
             filterComments: null,
-            idMeme: props.idMeme
+            idMeme: props.idMeme,
+            isNewComment: false
         };
     }
     componentDidMount() {
@@ -18,9 +19,23 @@ class ListComment extends React.Component {
             )
         });
     }
+    componentDidUpdate() {
+        if (this.state.isNewComment) {
+            this.setState({
+                // filterComments: datos.comments.filter(
+                //     element =>
+                //         element.meme === parseInt(this.state.idMeme)
+                // ),
+                isNewComment: false
+            });
+        }
+    }
     insertarComment = (nuevoComment) => {
         console.log(nuevoComment);
+        //  if (name) this.setState({ [name]: [...this.state?.[name], elto] });
+        this.setState({ isNewComment: true });
     }
+
     render() {
         let arrComment = null;
         if (this.state.filterComments) {

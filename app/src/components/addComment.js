@@ -24,7 +24,7 @@ class AddComment extends React.Component {
                                 ref={this.comment}
                             />
                             <div className="col-4">
-                                <div type="button" type="submit"
+                                <div type="submit"
                                     onClick={this.onSubmit}
                                     className="d-inline-block rounded-circle circuloAddComment"></div>
                             </div>

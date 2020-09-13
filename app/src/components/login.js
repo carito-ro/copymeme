@@ -1,8 +1,8 @@
 import React from 'react';
-import './login.scss';
+import '../assets/css/styles.scss';
 import foto from '../assets/images/meme1.png';
 import foto2 from '../assets/images/meme2.jpg';
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo-black.png';
 import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -70,12 +70,20 @@ class Login extends React.Component {
       });
   };
   render() {
+    if (this.state.message) {
+      alert = <div class="alert alert-danger" role="alert">
+        {this.state.message}
+      </div>
+    }
+    else {
+      alert = null;
+    }
     return this.state.isUserAuthenticated ? (
       <Redirect to="/" />
     ) : (
         <div class="login-wrapper">
           <div className="row">
-            <div className="col-sm-6 d-flex justify-content-center align-items-center">
+            <div className="d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
               <img
                 id="img2"
                 src={foto}
@@ -89,16 +97,10 @@ class Login extends React.Component {
                 alt="foto2"
               ></img>
             </div>
-            <div className="col-sm-6 d-flex justify-content-left align-items-center">
-              <div class="form">
-                <img
-                  src={logo}
-                  className="card-img-top w-25 mb-3"
-                  alt="logo"
-                ></img>
-                <span>
-                  <b>Copymeme</b>
-                </span>
+            <div className="col-sm-12 col-md-6 d-flex justify-content-left align-items-center">
+              <div className="form">
+                <div className="logo"></div>
+                {alert}
                 <form className="login-form" onSubmit={this.handleSubmit}>
                   <input
                     type="text"
@@ -121,7 +123,6 @@ class Login extends React.Component {
                     type="submit"
                     value="Iniciar sesión"
                   />
-                  <h5>{this.state.message}</h5>
                   <hr></hr>
                   <a className="yellow" href="/register">
                     Registrarme

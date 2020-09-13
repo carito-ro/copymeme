@@ -1,8 +1,8 @@
 import React from 'react';
-import './listMeme.scss';
+import '../assets/css/styles.scss';
 
 class AddMeme extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             imagen: '',

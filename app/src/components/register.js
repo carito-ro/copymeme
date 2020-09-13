@@ -1,6 +1,6 @@
 import React from 'react';
-import './register.scss';
-import logo from '../assets/images/logo.png';
+import '../assets/css/styles.scss';
+import logo from '../assets/images/logo-black.png';
 
 class Register extends React.Component {
   constructor (props) {
@@ -111,59 +111,72 @@ class Register extends React.Component {
   };
 
   render() {
+    if (this.state.message) {
+      alert = <div class="alert alert-danger" role="alert">
+        {this.state.message}
+      </div>
+    }
+    else {
+      alert = null;
+    }
     return (
       <div class="register-wrapper">
         <div className="row">
           <div className="col-sm-12 d-flex justify-content-center align-items-center">
             <div class="form">
-              <img
-                src={logo}
-                className="card-img-top w-25 mb-3"
-                alt="logo"
-              ></img>
-              <span>
-                <b>Copymeme</b>
-              </span>
+              <div class="logo"></div>
+              {alert}
               <form class="login-form" onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange}
-                  required
-                  maxLength="40"
-                />
-                <input
-                  type="text"
-                  placeholder="Nombre completo"
-                  value={this.state.nombre}
-                  onChange={this.handleNombreChange}
-                  required
-                  maxLength="100"
-                />
-                <input
-                  type="password"
-                  placeholder="Contraseña"
-                  value={this.state.password}
-                  onChange={this.handlePasswordChange}
-                  required
-                  maxLength="15"
-                />
-                <input
-                  type="password"
-                  placeholder="Confirme contraseña"
-                  value={this.state.passwordConfirm}
-                  onChange={this.handlePasswordConfirmChange}
-                  required
-                  maxLength="15"
-                />
+                <div class="row">
+                  <div class="col-12">
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      value={this.state.email}
+                      onChange={this.handleEmailChange}
+                      required
+                      maxLength="40"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <input
+                      type="text"
+                      placeholder="Nombre completo"
+                      value={this.state.nombre}
+                      onChange={this.handleNombreChange}
+                      required
+                      maxLength="100"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <input
+                      type="password"
+                      placeholder="Contraseña"
+                      value={this.state.password}
+                      onChange={this.handlePasswordChange}
+                      required
+                      maxLength="15"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <input
+                      type="password"
+                      placeholder="Confirme contraseña"
+                      value={this.state.passwordConfirm}
+                      onChange={this.handlePasswordConfirmChange}
+                      required
+                      maxLength="15"
+                    />
+                  </div>
+                </div>
                 <button type="submit" className="yellow">
                   Registrarme
                 </button>
-                <h5>{this.state.message}</h5>
                 <hr></hr>
                 <a className="btn-link" href="/login">
-                  Login
+                  <small>Volver</small>
                 </a>
               </form>
             </div>

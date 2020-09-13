@@ -1,10 +1,10 @@
 import React from 'react';
-import './listMeme.scss';
 import MemePreview from './memePreview';
 import datos from '../basePrueba/base';
+import '../assets/css/styles.scss';
 
 class ListMeme extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             lastCategoryView: null,

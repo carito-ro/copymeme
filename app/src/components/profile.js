@@ -1,5 +1,5 @@
 import React from 'react';
-import './profile.scss';
+import '../assets/css/styles.scss';
 
 export function Profile() {
     return (

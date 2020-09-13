@@ -1,5 +1,5 @@
 import React from 'react';
-import './comment.scss';
+import '../assets/css/styles.scss';
 
 function Comment({ dataComment }) {
     return (

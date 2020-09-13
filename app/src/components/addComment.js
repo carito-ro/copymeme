@@ -1,8 +1,8 @@
 import React from 'react';
-import './addComment.scss';
+import '../assets/css/styles.scss';
 
 class AddComment extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.comment = React.createRef();
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './memePreview.scss';
+import '../assets/css/styles.scss';
 import { Link } from "react-router-dom";
 
 class MemePreview extends React.Component {

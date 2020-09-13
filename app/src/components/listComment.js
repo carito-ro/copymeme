@@ -2,8 +2,9 @@ import React from 'react';
 import Comment from './comment';
 import AddComment from './addComment';
 import datos from '../basePrueba/base';
+
 class ListComment extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             filterComments: null,

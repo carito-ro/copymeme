@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { userContext } from '../userContext';
 
 class Login extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       islogActive: props.islogActive,
@@ -57,9 +57,15 @@ class Login extends React.Component {
             });
           } else {
             this.setState({
-              isUserAuthenticated: true
+              isUserAuthenticated: true,
             });
+
             this.props.loginUser(response.user, response.token);
+            let user = JSON.stringify(response.user);
+            localStorage.setItem('user', user);
+
+            let token = JSON.stringify(response.token);
+            localStorage.setItem('token', token);
           }
         } else {
           this.setState({
@@ -72,13 +78,15 @@ class Login extends React.Component {
   render() {
     let alert = null;
     if (this.state.message) {
-      alert = <div className="alert alert-danger" role="alert">
-        {this.state.message}
-      </div>
+      alert = (
+        <div className="alert alert-danger" role="alert">
+          {this.state.message}
+        </div>
+      );
     }
-    return <userContext.Consumer>
-      {
-        ({ authenticated }) => {
+    return (
+      <userContext.Consumer>
+        {({ authenticated }) => {
           if (authenticated) {
             return <Redirect to="/" />;
           } else {
@@ -104,7 +112,10 @@ class Login extends React.Component {
                       <div className="form">
                         <div className="logo"></div>
                         {alert}
-                        <form className="login-form" onSubmit={this.handleSubmit}>
+                        <form
+                          className="login-form"
+                          onSubmit={this.handleSubmit}
+                        >
                           <input
                             type="text"
                             placeholder="email"
@@ -129,17 +140,18 @@ class Login extends React.Component {
                           <hr></hr>
                           <a className="yellow" href="/register">
                             Registrarme
-                        </a>
+                          </a>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
-              </>)
+              </>
+            );
           }
-        }
-      }
-    </userContext.Consumer>;
+        }}
+      </userContext.Consumer>
+    );
   }
 }
 

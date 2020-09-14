@@ -21,20 +21,19 @@ class MemePreview extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <div className="card w-100">
-                            <img src={this.props.dataMeme.url} className="card-img-top" alt="..."></img>
+                        <div className="card w-100 meme-container" style={{ backgroundImage: `url(${this.props.dataMeme.url})`, height: '300px' }}>
                         </div>
                     </div>
                 </div>
                 <div className="row mt-2">
                     <div className="col-6">
                     </div>
-                    <div className="col-6 d-flex justify-content-end">
+                    <div className="col-md-6 col-sm-12 d-flex justify-content-end">
                         <a className="small-link" href="/#"> {this.props.dataMeme.positiveVotesCount} <i className="fa fa-thumbs-up"></i> {this.props.dataMeme.negativeVotesCount} <i className="fa fa-thumbs-down"></i></a>
                         <Link to={`/meme/${this.props.dataMeme.id}`} className="small-link ml-2">Ver comentarios</Link>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }

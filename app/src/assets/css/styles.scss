@@ -11,6 +11,42 @@
     background-position: center center;
 }
 
+.btn-primary {
+    background: #E33071 !important;
+    text-transform: uppercase;
+    color: white;
+    border: 0px;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.meme-container {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 0px;
+}
+
+.btn-primary:disabled {
+    background: #E1BD3B !important;
+}
+
+
+.form-control {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
 .bg-top {
     background-color: #3e3e3e;
     height: 65px;
@@ -53,6 +89,11 @@ li {
         a {
             color: white !important;
         }
+
+        button {
+            color: white !important;
+            -webkit-appearance: scrollbartrack-horizontal;
+        }
     }
 
     li:hover {
@@ -63,12 +104,18 @@ li {
             text-decoration: none;
             font-weight: bold;
         }
+
+        button {
+            color: #E1BD3B !important;
+            text-decoration: none;
+            font-weight: bold;
+        }
     }
 }
 
 .listado-memes {
     padding: 40px;
-    width: 600px;
+    width: 75%;
 }
 
 .listado-categorias {
@@ -407,4 +454,14 @@ li {
         color: #EF3B3A;
     }
 
+}
+
+@media only screen and (max-width: 600px) {
+    .listado-memes {
+        width: 100%;
+    }
+
+    .meme-container {
+        height: 140px !important;
+    }
 }

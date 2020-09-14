@@ -1,11 +1,9 @@
 import React from 'react';
 import '../assets/css/styles.scss';
 import { userContext } from '../userContext';
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
-    constructor (props) {
-        super(props);
-    }
 
     showWidget = (widget) => {
         widget.open();
@@ -27,9 +25,15 @@ class Header extends React.Component {
                                 </span>
                             </button>
                             <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/">Inicio</a></li>
-                                <li className="nav-item"><a href="/subirMeme">Subir meme</a></li>
-                                <li className="nav-item"><a onClick={logout}>Cerrar sesión</a></li>
+                                <li className="nav-item">
+                                    <Link to={`/`}>Inicio</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={`/subirMeme`}>Subir meme</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <button onClick={logout}>Cerrar sesión</button>
+                                </li>
                             </ul>
                         </li>
                     </nav>)
@@ -43,8 +47,12 @@ class Header extends React.Component {
                                 </span>
                             </button>
                             <ul className="dropdown-menu">
-                                <li className="nav-item"><a href="/">Inicio</a></li>
-                                <li className="nav-item"><a href="/login">Iniciar sesión</a></li>
+                                <li className="nav-item">
+                                    <Link to={`/`}>Inicio</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={`/login`}>Iniciar sesión</Link>
+                                </li>
                             </ul>
                         </li>
                     </nav>)

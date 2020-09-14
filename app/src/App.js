@@ -8,6 +8,7 @@ import MemeDetail from './components/memeDetail';
 import Login from './components/login';
 import Register from './components/register';
 import { userContext } from './userContext';
+import datos from './basePrueba/base';
 
 import {
   BrowserRouter as Router,
@@ -24,6 +25,7 @@ class App extends React.Component {
     };
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
+    this.uploadMeme = this.uploadMeme.bind(this);
   }
 
   logout() {
@@ -34,6 +36,12 @@ class App extends React.Component {
     this.setState({ user: loggedUser, authenticated: true, token: authToken });
   }
 
+  uploadMeme(meme) {
+    let newId = datos.memes.length + 1;
+    meme.id = newId;
+    datos.memes.push(meme);
+  }
+
   render() {
     const value = {
       user: this.state.user,
@@ -42,8 +50,8 @@ class App extends React.Component {
     }
     return (
       <userContext.Provider value={value}>
-        <Header></Header>
         <Router>
+          <Header></Header>
           <Switch>
             <Route path="/perfil">
               <Profile />
@@ -58,7 +66,7 @@ class App extends React.Component {
               <Register />
             </Route>
             <Route path="/subirMeme">
-              <AddMeme />
+              <AddMeme uploadMeme={this.uploadMeme} />
             </Route>
             <Route path="/memes/:category" component={Main} />
             <Route path="/">

@@ -2,13 +2,12 @@ import React from 'react';
 import Comment from './comment';
 import AddComment from './addComment';
 import datos from '../basePrueba/base';
-
 class ListComment extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             filterComments: null,
-            idMeme: props.idMeme,
+            meme: props.meme,
             isNewComment: false
         };
     }
@@ -16,24 +15,39 @@ class ListComment extends React.Component {
         this.setState({
             filterComments: datos.comments.filter(
                 element =>
-                    element.meme === parseInt(this.state.idMeme)
+                    element.meme === parseInt(this.state.meme?.id)
             )
         });
     }
     componentDidUpdate() {
-        if (this.state.isNewComment) {
+        if (this.state?.isNewComment) {
             this.setState({
-                // filterComments: datos.comments.filter(
-                //     element =>
-                //         element.meme === parseInt(this.state.idMeme)
-                // ),
+                // filterComments con  parseInt(this.state.idMeme)
+                //se lo agrego a filterComments:[]
                 isNewComment: false
             });
         }
     }
     insertarComment = (nuevoComment) => {
         console.log(nuevoComment);
-        //  if (name) this.setState({ [name]: [...this.state?.[name], elto] });
+        /* var url = 'http://127.0.0.1:5000/comments';
+
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(nuevoComment),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error('Error:', error))
+      .then((response) => {
+        if (response) {
+          ver que va acá
+            //si se inserto modifico estado para actualizar
+          this.setState({ isNewComment: true });
+        }
+      }); */
         this.setState({ isNewComment: true });
     }
 
@@ -48,10 +62,8 @@ class ListComment extends React.Component {
         return (
             <div className="w-100 pl-5 pt-0 mt-0 pl-md-4 pt-md-4 mt-md-5">
                 {arrComment}
-                <AddComment insertarComment={this.insertarComment}>
-
+                <AddComment insertarComment={this.insertarComment} meme={this.state.meme}>
                 </AddComment>
-
             </div>
         );
     }

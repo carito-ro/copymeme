@@ -44,7 +44,7 @@ function MemeDetail() {
                     </div>
                 </div>
                 <div className=" col-12 mh-100 col-md-5 pt-5 d-flex justify-content-center align-items-top">
-                    <ListComment idMeme={objetoMeme.id} ></ListComment>
+                    <ListComment meme={objetoMeme} ></ListComment>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ class MemePreview extends React.Component {
                         </h4>
                     </div>
                     <div className="col-4 d-flex justify-content-end">
-                        <VoteMemes></VoteMemes>
+                        <VoteMemes meme={this.props.dataMeme}></VoteMemes>
                     </div>
                 </div>
                 <div className="row">

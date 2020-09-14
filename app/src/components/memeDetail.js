@@ -23,7 +23,7 @@ function MemeDetail() {
                                 </h4>
                             </div>
                             <div className="col-4 d-flex justify-content-end">
-                                <VoteMemes></VoteMemes>
+                                <VoteMemes meme={objetoMeme}></VoteMemes>
                             </div>
                         </div>
                         <div className="row">

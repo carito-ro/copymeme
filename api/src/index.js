@@ -3,8 +3,9 @@ import memeRoutes from "./controllers/meme.controller";
 import commentRoutes from "./controllers/comment.controller";
 import votesRoutes from "./controllers/votes.controller";
 import categoriesRoutes from "./controllers/categories.controller";
-import usersRoutes from "./controllers/users";
+import usersRoutes from "./controllers/users.controller";
 import loginRoutes from "./controllers/login";
+
 const express = require('express'),
     config = require('./configs/config'),
     bodyParser = require('body-parser');
@@ -12,8 +13,8 @@ const express = require('express'),
 const app = express();
 app.use(json());
 
-app.use('/meme', memeRoutes);
-app.use('/comment', commentRoutes);
+app.use('/memes', memeRoutes);
+app.use('/comments', commentRoutes);
 app.use('/votes', votesRoutes);
 app.use('/categories', categoriesRoutes);
 

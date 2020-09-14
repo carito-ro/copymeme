@@ -1,8 +1,12 @@
-import { Schema, model } from 'mongoose';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/copymeme');
 
-export const CategoriesSchema = new Schema({
-    id: Schema.Types.ObjectId,
-    name: String
+const categorySchema = new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectId,
+    name: {
+        type: String,
+        required: true
+    }
 });
 
-export const Category = model('categories', CategoriesSchema, 'categories');
+export default mongoose.model('Category', categorySchema, 'categories');

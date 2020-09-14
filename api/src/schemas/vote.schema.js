@@ -1,18 +1,22 @@
-import { Schema, model } from 'mongoose';
-import * as mongoose from 'mongoose';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/copymeme');
 
-
-export const VoteSchema = new Schema({
+const voteSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'User',
+        required: true
     },
     meme: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'meme'
+        ref: 'Meme',
+        required: true
     },
-    type: String
+    type: {
+        type: String,
+        required: true
+    }
 });
 
-export const Votes = model('votes', VotesSchema, 'votes');
+export default mongoose.model('Vote', voteSchema, 'votes');

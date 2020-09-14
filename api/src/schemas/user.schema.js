@@ -1,10 +1,20 @@
-import { Schema, model } from 'mongoose';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/copymeme');
 
-export const UserSchema = new Schema({
-    id: Schema.Types.ObjectId,
-    email: String,
-    username: String,
-    password: String
+export const userSchema = new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectId,
+    email: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 });
 
-export const User = model('user', UserSchema, 'user');
+export default mongoose.model('User', userSchema, 'users');

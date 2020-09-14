@@ -10,7 +10,7 @@ var _votes = _interopRequireDefault(require("./controllers/votes.controller"));
 
 var _categories = _interopRequireDefault(require("./controllers/categories.controller"));
 
-var _users = _interopRequireDefault(require("./controllers/users"));
+var _users = _interopRequireDefault(require("./controllers/users.controller"));
 
 var _login = _interopRequireDefault(require("./controllers/login"));
 
@@ -22,8 +22,8 @@ var express = require('express'),
 
 var app = express();
 app.use((0, _bodyParser.json)());
-app.use('/meme', _meme["default"]);
-app.use('/comment', _comment["default"]);
+app.use('/memes', _meme["default"]);
+app.use('/comments', _comment["default"]);
 app.use('/votes', _votes["default"]);
 app.use('/categories', _categories["default"]);
 app.set('llave', config.llave);

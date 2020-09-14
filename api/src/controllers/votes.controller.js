@@ -1,14 +1,47 @@
 import express from 'express';
-import { helpers } from '../helpers';
+import Vote from '../schemas/vote.schema';
 const router = express.Router();
 
-router.get('/:memeId', async function (req, res) {
-    helpers.getAll('votes', { meme: memeId }, req, res);
+router.get('/:idMeme', async function (req, res) {
+    try {
+        const idMeme = req.params.idMeme;
+        const votos = await Vote.find({
+            meme: idMeme,
+        });
+        if (!votos) {
+            return res.status(404).send({
+                success: false,
+                message: 'Votes not found',
+                data: null,
+            });
+        }
+        res.json(votos);
+    } catch (err) {
+        res.status(500).send({
+            success: false,
+            message: err.toString(),
+            data: null,
+        });
+    }
 });
 
 router.post('/', async function (req, res) {
-    const vote = req.query;
-    helpers.insert('votes', vote, req, res);
+    const { author, meme, type } = req.body;
+    try {
+        const voto = new Vote({
+            author,
+            meme,
+            type
+        });
+        const newVoto = await voto.save();
+        res.json(newVoto);
+    } catch (err) {
+        res.status(500).send({
+            success: false,
+            message: err.toString(),
+            data: null,
+        });
+    }
 });
 
 export default router;

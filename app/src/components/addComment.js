@@ -1,41 +1,52 @@
-import React from 'react';
+import React from "react";
 import '../assets/css/styles.scss';
-
+import { userContext } from '../userContext';
 class AddComment extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.comment = React.createRef();
     }
     onSubmit = (event) => {
         event.preventDefault();
-        const comment = this.comment.current.value;
-        this.props.insertarComment({ comment: comment });
+        this.props.insertarComment(
+            {
+                content: this.comment.current.value,
+                author: this.context.user._id,
+                meme: this.props.meme?.id
+            });
         this.comment.current.value = '';
     }
     render() {
         return (
-            <div className="mb-5">
-                <div className="bd-content-title pl-3">
-                    <form className="form">
-                        <div className="row">
-                            <input type="text" maxLength="256"
-                                className="col-8 d-inline-block"
-                                placeholder="Agrega un comentario..."
-                                ref={this.comment}
-                            />
-                            <div className="col-4">
-                                <div type="submit"
-                                    onClick={this.onSubmit}
-                                    className="d-inline-block rounded-circle circuloAddComment"></div>
+            <userContext.Consumer>{
+                ({ authenticated }) => {
+                    if (authenticated) {
+                        return (
+                            <div className="mb-5">
+                                <div className="bd-content-title pl-3">
+                                    <form className="form">
+                                        <div className="row">
+                                            <input type="text" maxLength="256"
+                                                className="col-8 d-inline-block"
+                                                placeholder="Agrega un comentario..."
+                                                ref={this.comment}
+                                            />
+                                            <div className="col-4">
+                                                <div type="submit"
+                                                    onClick={this.onSubmit}
+                                                    className="d-inline-block rounded-circle circuloAddComment"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                        );
+                    }
+                }
+            }</userContext.Consumer>
         );
     }
-
 }
 
-
+AddComment.contextType = userContext;
 export default AddComment;

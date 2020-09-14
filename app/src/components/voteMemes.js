@@ -1,22 +1,26 @@
 import React from 'react';
 import '../assets/css/styles.scss';
 import { userContext } from '../userContext';
+import AddVote from './addVote';
 
 class VoteMemes extends React.Component {
+    submitVote = (voto) => {
+        if (voto) {
+            console.log(voto);//Enviar meme
+        }
+    }
+
     render() {
         return (
             <userContext.Consumer>{
-                ({ authenticated, logout }) => {
+                ({ authenticated }) => {
                     if (authenticated) {
-                        return (<div className="col-4 d-flex justify-content-end">
-                            <button className="btn btn-vote-up mr-1"><i className="fa fa-thumbs-up"></i></button>
-                            <button className="btn btn-vote-down"><i className="fa fa-thumbs-down"></i></button>
-                        </div>);
+                        return <AddVote meme={this.props.meme} submitVote={this.submitVote}></AddVote>
                     }
                 }
             }</userContext.Consumer>
         );
     }
 }
-
+AddVote.contextType = userContext;
 export default VoteMemes;

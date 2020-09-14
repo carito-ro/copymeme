@@ -1,9 +1,18 @@
 import { Schema, model } from 'mongoose';
+import * as mongoose from 'mongoose';
+
 
 export const VoteSchema = new Schema({
-    id: Schema.Types.ObjectId,
-    authos: Schema.Types.ObjectId,
+    id: mongoose.Schema.Types.ObjectId,
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    meme: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'meme'
+    },
     type: String
 });
 
-export const Category = model('vote', VoteSchema, 'vote');
+export const Votes = model('votes', VotesSchema, 'votes');

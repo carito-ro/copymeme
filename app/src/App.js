@@ -13,14 +13,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-} from "react-router-dom";
+  Redirect,
+} from 'react-router-dom';
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       user: {},
-      authenticated: false
+      authenticated: false,
     };
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
@@ -28,6 +28,7 @@ class App extends React.Component {
 
   logout() {
     this.setState({ user: {}, authenticated: false, token: '' });
+    localStorage.clear();
   }
 
   login(loggedUser, authToken) {
@@ -38,8 +39,8 @@ class App extends React.Component {
     const value = {
       user: this.state.user,
       authenticated: this.state.authenticated,
-      logout: this.logout
-    }
+      logout: this.logout,
+    };
     return (
       <userContext.Provider value={value}>
         <Header></Header>
@@ -51,7 +52,7 @@ class App extends React.Component {
             <Route path="/meme/:meme">
               <MemeDetail />
             </Route>
-            <Route path="/login" >
+            <Route path="/login">
               <Login loginUser={this.login} />
             </Route>
             <Route path="/register">

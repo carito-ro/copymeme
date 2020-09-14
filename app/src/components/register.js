@@ -10,7 +10,7 @@ class Register extends React.Component {
       email: '',
       password: '',
       passwordConfirm: '',
-      message: '',
+      message: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNombreChange = this.handleNombreChange.bind(this);
@@ -110,6 +110,7 @@ class Register extends React.Component {
   };
 
   render() {
+    let alert;
     if (this.state.message) {
       alert = <div className="alert alert-danger" role="alert">
         {this.state.message}

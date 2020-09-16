@@ -1,27 +1,50 @@
 import React from 'react';
 import '../assets/css/styles.scss';
 import ListCategory from './listCategory';
-import datos from '../basePrueba/base';
 import ListMeme from './listMeme';
+import { withRouter } from "react-router";
+class Main extends React.Component {
 
-import { useParams } from 'react-router-dom';
-function Main() {
-  let { category } = useParams();
-  return (
-    <div className="container-fluid">
-      <div className="row vh-100">
-        <div className="col-md-4 p-3">
-          <ListCategory
-            categories={datos.categories}
-            categoryView={category}
-          ></ListCategory>
-        </div>
-        <div className="col-md-8 p-0 ">
-          <ListMeme categoryView={category}></ListMeme>
+  constructor(props) {
+    super(props);
+    this.state = {
+      listCategories: null,
+      memesAll: null
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/categories`);
+      const json = await response.json();
+      const response2 = await fetch(`http://127.0.0.1:5000/memes`);
+      const json2 = await response2.json();
+      this.setState({
+        listCategories: json,
+        memesAll: json2
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
+    if (this.state.listCategories) {
+      return <div className="container-fluid mt-5">
+        <div className="row vh-100">
+          <div className="col-md-4 p-3">
+            <ListCategory
+              categories={this.state.listCategories}
+              categoryView={this.props.match.params.category}
+            ></ListCategory>
+          </div>
+          <div className="col-md-8 p-0 ">
+            <ListMeme categoryView={this.props.match.params.category} memesFiltrados={this.state.memesAll}></ListMeme>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    } else { return <>  </> }
+  }
 }
+export default withRouter(Main);
 
-export default Main;

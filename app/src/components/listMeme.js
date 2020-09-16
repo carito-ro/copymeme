@@ -47,7 +47,7 @@ class ListMeme extends React.Component {
 
   render() {
     return (
-      <div className="listado-memes" style={{ height: 600, overflow: 'auto' }}>
+      <div className="listado-memes" >
         <InfiniteScroll
           dataLength={this.state.memesFiltrados.length}
           next={this.state.memesFiltrados}

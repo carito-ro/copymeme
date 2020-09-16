@@ -20,7 +20,15 @@ var express = require('express'),
     config = require('./configs/config'),
     bodyParser = require('body-parser');
 
-var app = express();
+var app = express(); //cors
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
 app.use((0, _bodyParser.json)());
 app.use('/memes', _meme["default"]);
 app.use('/comments', _comment["default"]);
@@ -29,19 +37,21 @@ app.use('/categories', _categories["default"]);
 app.set('llave', config.llave);
 app.use(bodyParser.urlencoded({
   extended: true
-}));
+})); // app.use(bodyParser.json());
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header(
+//         'Access-Control-Allow-Headers',
+//         'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+//     );
+//     if (req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+//         return res.status(200).json({});
+//     }
+//     next();
+// });
+
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).json({});
-  }
-
-  next();
-});
 app.get('/api/v1/status', function (req, res) {
   res.status(200).send({
     message: 'OK'

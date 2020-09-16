@@ -16,7 +16,7 @@ function Main() {
             categoryView={category}
           ></ListCategory>
         </div>
-        <div className="col-md-8 p-3 ">
+        <div className="col-md-8 p-0 ">
           <ListMeme categoryView={category}></ListMeme>
         </div>
       </div>

@@ -6,7 +6,7 @@ import VoteMemes from './voteMemes';
 class MemePreview extends React.Component {
     render() {
         return (
-            <div className="preview-wrapper">
+            <div className="preview-wrapper col-8">
                 <div className="row">
                     <div className="col-8">
                         <h4 className="titulo-meme">

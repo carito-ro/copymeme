@@ -59,7 +59,9 @@ class MemeDetail extends React.Component {
                     </div>
                 </div>
                 <div className=" col-12 mh-100 col-md-5 pt-5 d-flex justify-content-center align-items-top">
-                    <ListComment meme={objetoMeme} ></ListComment>
+                    <ListComment meme={objetoMeme} key={objetoMeme._id} >
+
+                    </ListComment>
                 </div>
             </div>;
         } else {

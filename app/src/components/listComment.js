@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from './comment';
 import AddComment from './addComment';
-import datos from '../basePrueba/base';
+
 class ListComment extends React.Component {
     constructor(props) {
         super(props);
@@ -11,44 +11,49 @@ class ListComment extends React.Component {
             isNewComment: false
         };
     }
-    componentDidMount() {
-        this.setState({
-            filterComments: datos.comments.filter(
-                element =>
-                    element.meme === parseInt(this.state.meme?.id)
-            )
-        });
-    }
-    componentDidUpdate() {
-        if (this.state?.isNewComment) {
+    async componentDidMount() {
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/comments/` + this.props.meme._id);
+            const json = await response.json();
             this.setState({
-                // filterComments con  parseInt(this.state.idMeme)
-                //se lo agrego a filterComments:[]
-                isNewComment: false
+                filterComments: json,
             });
+        } catch (error) {
+            console.log(error);
         }
     }
-    insertarComment = (nuevoComment) => {
-        console.log(nuevoComment);
-        /* var url = 'http://127.0.0.1:5000/comments';
-
-    await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(nuevoComment),
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error('Error:', error))
-      .then((response) => {
-        if (response) {
-          ver que va acá
-            //si se inserto modifico estado para actualizar
-          this.setState({ isNewComment: true });
+    async componentDidUpdate() {
+        if (this.state?.isNewComment) {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/comments/` + this.props.meme._id);
+                const json = await response.json();
+                this.setState({
+                    filterComments: json,
+                    isNewComment: false
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
-      }); */
-        this.setState({ isNewComment: true });
+    }
+    insertarComment = async (nuevoComment) => {
+        console.log(nuevoComment);
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/comments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(nuevoComment),
+            });
+            const json = await response.json();
+            console.log(json);
+            this.setState({
+                isNewComment: true
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {
@@ -56,7 +61,7 @@ class ListComment extends React.Component {
         if (this.state.filterComments) {
             arrComment = this.state.filterComments.map(
                 (comment) =>
-                    <Comment key={comment.id} dataComment={comment}></Comment>
+                    <Comment key={comment._id} dataComment={comment}></Comment>
             )
         }
         return (

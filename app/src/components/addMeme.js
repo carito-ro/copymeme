@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/styles.scss';
 
 class AddMeme extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             titulo: '',
@@ -10,8 +10,22 @@ class AddMeme extends React.Component {
             imagen: '',
             category: 0,
             subioImagen: false,
-            message: ''
+            memeUpload: false,
+            categories: [],
+            user: ''
         };
+    }
+
+    componentWillMount() {
+        fetch("http://127.0.0.1:5000/categories")
+            .then((response) => {
+                return response.json()
+            })
+            .then((categories) => {
+                this.setState({ categories })
+            });
+
+        this.setState({ user: JSON.parse(localStorage.getItem("user")) });
     }
 
     showWidget = (widget) => {
@@ -41,13 +55,21 @@ class AddMeme extends React.Component {
             positiveVotesCount: 0,
             negativeVotesCount: 0,
             category: this.state.category,
-            url: this.state.imagen,
+            image: this.state.imagen,
             title: this.state.titulo,
             description: this.state.descripcion,
-            author: 'prueba',
+            author: this.state.user
         }
+        fetch("http://127.0.0.1:5000/memes", {
+            method: 'post',
+            body: JSON.stringify(meme),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(json => console.log(json));
+
         this.props.uploadMeme(meme);
-        this.setState({ titulo: '', descripcion: '', imagen: '', category: 0, subioImagen: false, message: 'Meme subido con éxito' });
+        this.setState({ titulo: '', descripcion: '', imagen: '', category: 0, subioImagen: false, memeUpload: true });
         event.preventDefault();
     }
 
@@ -59,9 +81,11 @@ class AddMeme extends React.Component {
             this.checkUpload(result)
         });
         let alert;
-        if (this.state.message) {
-            alert = <div className="alert alert-danger" role="alert">
-                {this.state.message}
+        if (this.state.memeUpload) {
+            alert = <div class="alert alert-success" role="alert">
+                <strong>Su meme ha subido con exito</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
             </div>
         }
         else {
@@ -86,13 +110,14 @@ class AddMeme extends React.Component {
                         </div>
                         <div className="row mt-2">
                             <div className="col-12">
-                                <select name="category" className="form-control custom-select" value={this.state.categoria}
+                                <select name="category" className="form-control custom-select" value={this.state.category} placeholder="Seleccione una categoria"
                                     onChange={this.handleCategoryChange}>
-                                    <option value="0">Categorias</option>
-                                    <option value="1">Deportes</option>
-                                    <option value="2">Humor Negro   </option>
-                                    <option value="3">Trabajo</option>
-                                    <option value="3">To dark to see</option>
+                                    <option selected>Seleccione una categoria</option>
+                                    {this.state.categories.map(cat => {
+                                        return (
+                                            <option value={cat._id}>{cat.name}</option>
+                                        );
+                                    })}
                                 </select>
                             </div>
                         </div>

@@ -53,28 +53,33 @@ class App extends React.Component {
       <userContext.Provider value={value}>
         <Router>
           <Header></Header>
-          <Switch>
-            <Route path="/perfil">
-              <Profile />
-            </Route>
-            <Route path="/meme/:meme">
-              <MemeDetail />
-            </Route>
-            <Route path="/login">
-              <Login loginUser={this.login} />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/subirMeme">
-              <AddMeme uploadMeme={this.uploadMeme} />
-            </Route>
-            <Route path="/memes/:category" component={Main} />
-            <Route path="/">
-              <Main />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
+          <div className="container-fluid mt-5">
+            <Switch>
+
+              <Route path="/perfil">
+                <Profile />
+              </Route>
+              <Route path="/login">
+                <Login loginUser={this.login} />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route path="/subirMeme">
+                <AddMeme uploadMeme={this.uploadMeme} />
+              </Route>
+              <Route path="/meme/:meme">
+                <MemeDetail />
+              </Route>
+              <Route path="/memes/:category">
+                <Main />
+              </Route>
+              <Route path="/">
+                <Main />
+              </Route>
+              <Redirect to="/" />
+            </Switch>
+          </div>
         </Router>
       </userContext.Provider>
     );

@@ -1,17 +1,32 @@
 import React from 'react';
 import '../assets/css/styles.scss';
-import { useParams } from "react-router-dom";
-import datos from '../basePrueba/base';
 import ListComment from './listComment';
 import VoteMemes from './voteMemes';
-function MemeDetail() {
+import { withRouter } from "react-router";
+class MemeDetail extends React.Component {
 
-    let { meme } = useParams();
-    let objetoMeme = datos.memes.find(element => element.id === parseInt(meme));
-
-    return (
-        <div className="container-fluid ">
-            <div className="row">
+    constructor(props) {
+        super(props);
+        this.state = {
+            objetoMeme: null
+        };
+    }
+    async componentDidMount() {
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/memes/` + this.props.match.params.meme);
+            const json = await response.json();
+            this.setState({
+                objetoMeme: json,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    render() {
+        let elto;
+        let objetoMeme = this.state?.objetoMeme;
+        if (objetoMeme) {
+            elto = <div className="row">
                 <div className=" col-12 col-md-7 d-flex justify-content-center align-items-center">
                     <div className=" w-100 ml-5 mr-sm-5 mt-5">
                         <div className="row">
@@ -19,7 +34,7 @@ function MemeDetail() {
                                 <h4 className="titulo-meme">
                                     {objetoMeme.title}
                                     <br></br>
-                                    <small>{objetoMeme.category}</small>
+                                    <small>{objetoMeme.category.name}</small>
                                 </h4>
                             </div>
                             <div className="col-4 d-flex justify-content-end">
@@ -29,7 +44,7 @@ function MemeDetail() {
                         <div className="row">
                             <div className="col-12">
                                 <div className="card w-100">
-                                    <img src={objetoMeme.url} className="card-img-top" alt="..."></img>
+                                    <img src={objetoMeme.image} className="card-img-top" alt="..."></img>
                                 </div>
                             </div>
                         </div>
@@ -46,9 +61,16 @@ function MemeDetail() {
                 <div className=" col-12 mh-100 col-md-5 pt-5 d-flex justify-content-center align-items-top">
                     <ListComment meme={objetoMeme} ></ListComment>
                 </div>
+            </div>;
+        } else {
+            elto = <></>;
+        }
+        return (
+            <div className="container-fluid ">
+                {elto}
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default MemeDetail;
+export default withRouter(MemeDetail);

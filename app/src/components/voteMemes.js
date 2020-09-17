@@ -23,7 +23,7 @@ class VoteMemes extends React.Component {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
       .then((response) => {
-        console.log(response);
+        // Actualizar el listado de memes.
       });
   };
 

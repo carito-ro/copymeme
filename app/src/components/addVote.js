@@ -18,7 +18,7 @@ class AddVote extends React.Component {
     this.props.submitVote({
       author: this.context.user._id,
       meme: this.props.meme._id,
-      type: event.target.id, // 0 negativo 1 positivo
+      type: type, // 0 negativo 1 positivo
     });
     event.preventDefault();
     //si ya voto no enviar!

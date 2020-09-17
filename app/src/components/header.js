@@ -38,7 +38,7 @@ class Header extends React.Component {
                         </li>
                     </nav>)
                 } else {
-                    return (<nav className="navbar navbar-dark navbar-expand-sm bg-top sticky-top">
+                    return (<nav className="navbar navbar-dark navbar-expand-sm bg-top fixed-top">
                         <a className="navbar-brand text-white" href="/">
                         </a>
                         <li className="dropdown menu dropleft">

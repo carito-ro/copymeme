@@ -12,7 +12,7 @@ class AddComment extends React.Component {
             {
                 content: this.comment.current.value,
                 author: this.context.user._id,
-                meme: this.props.meme?.id
+                meme: this.props.meme?._id
             });
         this.comment.current.value = '';
     }

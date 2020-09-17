@@ -6,13 +6,13 @@ import VoteMemes from './voteMemes';
 class MemePreview extends React.Component {
     render() {
         return (
-            <div className="preview-wrapper">
+            <div className="preview-wrapper col-8">
                 <div className="row">
                     <div className="col-8">
                         <h4 className="titulo-meme">
                             {this.props.dataMeme.title}
                             <br></br>
-                            <small>{this.props.dataMeme.category}</small>
+                            <small>{this.props.dataMeme.category.name}</small>
                         </h4>
                     </div>
                     <div className="col-4 d-flex justify-content-end">
@@ -21,7 +21,7 @@ class MemePreview extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <div className="card w-100 meme-container" style={{ backgroundImage: `url(${this.props.dataMeme.url})`, height: '300px' }}>
+                        <div className="card w-100 meme-container" style={{ backgroundImage: `url(${this.props.dataMeme.image})`, height: '300px' }}>
                         </div>
                     </div>
                 </div>
@@ -30,10 +30,10 @@ class MemePreview extends React.Component {
                     </div>
                     <div className="col-md-6 col-sm-12 d-flex justify-content-end">
                         <a className="small-link" href="/#"> {this.props.dataMeme.positiveVotesCount} <i className="fa fa-thumbs-up"></i> {this.props.dataMeme.negativeVotesCount} <i className="fa fa-thumbs-down"></i></a>
-                        <Link to={`/meme/${this.props.dataMeme.id}`} className="small-link ml-2">Ver comentarios</Link>
+                        <Link to={`/meme/${this.props.dataMeme._id}`} className="small-link ml-2">Ver comentarios</Link>
                     </div>
                 </div>
-            </div >
+            </div>
         );
     }
 }

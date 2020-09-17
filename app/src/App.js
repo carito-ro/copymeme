@@ -17,7 +17,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       user: {},
@@ -26,6 +26,12 @@ class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
     this.uploadMeme = this.uploadMeme.bind(this);
+  }
+
+  componentDidMount() {
+    if (localStorage.user) {
+      this.setState({ user: JSON.parse(localStorage.user), authenticated: true, token: localStorage.token });
+    }
   }
 
   logout() {
@@ -53,9 +59,8 @@ class App extends React.Component {
       <userContext.Provider value={value}>
         <Router>
           <Header></Header>
-          <div className="container-fluid mt-5">
+          <div className="container-fluid">
             <Switch>
-
               <Route path="/perfil">
                 <Profile />
               </Route>

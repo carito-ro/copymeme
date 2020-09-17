@@ -5,10 +5,11 @@ function Comment({ dataComment }) {
     return (
         <>
             <div className="row pb-3">
-                <div className=" d-flex align-items-center circuloComment rounded-circle">
+                <div className="d-flex align-items-center circuloComment "><i id="1" className="fa fa-user"></i>
                 </div>
-                <span className="col-10 d-flex align-items-center align-items-center">
-                    {dataComment.content}
+                <span className="col-10">
+                    <small>{dataComment.author?.name}</small>
+                    <br></br>{dataComment.content}
                 </span>
             </div>
         </>

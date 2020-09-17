@@ -3,7 +3,7 @@ import MemePreview from './memePreview';
 import '../assets/css/styles.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
 class ListMeme extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       lastCategoryView: this.props.categoryView,
@@ -23,8 +23,10 @@ class ListMeme extends React.Component {
             lastCategoryView: this.props.categoryView
           });
         } else {
+          const response = await fetch('http://127.0.0.1:5000/memes');
+          const json = await response.json();
           this.setState({
-            memesFiltrados: this.props.categoryView,
+            memesFiltrados: json,
             lastCategoryView: this.props.categoryView,
           });
         }

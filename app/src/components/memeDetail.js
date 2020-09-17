@@ -5,7 +5,7 @@ import VoteMemes from './voteMemes';
 import { withRouter } from "react-router";
 class MemeDetail extends React.Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             objetoMeme: null
@@ -28,8 +28,8 @@ class MemeDetail extends React.Component {
         if (objetoMeme) {
             elto = <div className="row">
                 <div className=" col-12 col-md-7 d-flex justify-content-center align-items-center">
-                    <div className=" w-100 ml-5 mr-sm-5 mt-5">
-                        <div className="row">
+                    <div className="preview-wrapper w-100 mt-5">
+                        <div className="row heading-preview">
                             <div className="col-8">
                                 <h4 className="titulo-meme">
                                     {objetoMeme.title}
@@ -41,14 +41,13 @@ class MemeDetail extends React.Component {
                                 <VoteMemes meme={objetoMeme}></VoteMemes>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row mt-3">
                             <div className="col-12">
-                                <div className="card w-100">
-                                    <img src={objetoMeme.image} className="card-img-top" alt="..."></img>
+                                <div className="card w-100 meme-container" style={{ backgroundImage: `url(${objetoMeme.image})`, height: '300px' }}>
                                 </div>
                             </div>
                         </div>
-                        <div className="row mt-2">
+                        <div className="row mt-2 footer-preview">
                             <div className="col-6">
                             </div>
                             <div className="col-6 d-flex justify-content-end">
@@ -58,7 +57,7 @@ class MemeDetail extends React.Component {
 
                     </div>
                 </div>
-                <div className=" col-12 mh-100 col-md-5 pt-5 d-flex justify-content-center align-items-top">
+                <div className="col-12 mh-100 col-md-4 pt-md-5 pt-sm-0 d-flex justify-content-center align-items-top">
                     <ListComment meme={objetoMeme} key={objetoMeme._id} >
 
                     </ListComment>

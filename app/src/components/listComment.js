@@ -3,7 +3,7 @@ import Comment from './comment';
 import AddComment from './addComment';
 
 class ListComment extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             filterComments: null,
@@ -65,7 +65,7 @@ class ListComment extends React.Component {
             )
         }
         return (
-            <div className="w-100 pl-5 pt-0 mt-0 pl-md-4 pt-md-4 mt-md-5">
+            <div className="w-100 pl-2 mb-5">
                 {arrComment}
                 <AddComment insertarComment={this.insertarComment} meme={this.state.meme}>
                 </AddComment>

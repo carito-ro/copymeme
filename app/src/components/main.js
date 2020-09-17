@@ -5,7 +5,7 @@ import ListMeme from './listMeme';
 import { withRouter } from "react-router";
 class Main extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       listCategories: null,
@@ -36,17 +36,15 @@ class Main extends React.Component {
 
   render() {
     if (this.state.listCategories && this.state.memesAll) {
-      return <div className="container-fluid mt-5">
-        <div className="row vh-100">
-          <div className="col-md-4 p-3">
-            <ListCategory
-              categories={this.state.listCategories}
-              categoryView={this.props.match.params.category}
-            ></ListCategory>
-          </div>
-          <div className="col-md-8 p-0 ">
-            <ListMeme categoryView={this.props.match.params.category} memesFiltrados={this.state.memesAll}></ListMeme>
-          </div>
+      return <div className="row vh-100">
+        <div className="col-md-4 p-3">
+          <ListCategory
+            categories={this.state.listCategories}
+            categoryView={this.props.match.params.category}
+          ></ListCategory>
+        </div>
+        <div className="col-md-8 p-3">
+          <ListMeme categoryView={this.props.match.params.category} memesFiltrados={this.state.memesAll}></ListMeme>
         </div>
       </div>
     } else { return <>  </> }

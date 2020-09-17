@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { userContext } from '../userContext';
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       islogActive: props.islogActive,

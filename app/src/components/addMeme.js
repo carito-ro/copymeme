@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/styles.scss';
 
 class AddMeme extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             titulo: '',
@@ -82,7 +82,7 @@ class AddMeme extends React.Component {
         });
         let alert;
         if (this.state.memeUpload) {
-            alert = <div class="alert alert-success" role="alert">
+            alert = <div className="alert alert-success" role="alert">
                 <strong>Su meme ha subido con exito</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 

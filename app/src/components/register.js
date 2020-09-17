@@ -51,7 +51,7 @@ class Register extends React.Component {
   registrar = async () => {
     var url = 'http://127.0.0.1:5000/users';
     var data = {
-      nombre: this.state.nombre,
+      name: this.state.nombre,
       email: this.state.email,
       password: this.state.password,
     };

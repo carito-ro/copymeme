@@ -2,7 +2,7 @@ import React from "react";
 import '../assets/css/styles.scss';
 import { userContext } from '../userContext';
 class AddComment extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.comment = React.createRef();
     }
@@ -22,7 +22,8 @@ class AddComment extends React.Component {
                 ({ authenticated }) => {
                     if (authenticated) {
                         return (
-                            <div className="mb-5">
+                            <div className="mb-2">
+                                <hr></hr>
                                 <div className="bd-content-title pl-3">
                                     <form className="form">
                                         <div className="row">
@@ -34,7 +35,7 @@ class AddComment extends React.Component {
                                             <div className="col-4">
                                                 <div type="submit"
                                                     onClick={this.onSubmit}
-                                                    className="d-inline-block rounded-circle circuloAddComment"></div>
+                                                    className="d-inline-block rounded-circle circuloAddComment"><i id="1" className="fa fa-comment"></i></div>
                                             </div>
                                         </div>
                                     </form>

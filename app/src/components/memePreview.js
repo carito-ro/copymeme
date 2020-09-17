@@ -6,8 +6,8 @@ import VoteMemes from './voteMemes';
 class MemePreview extends React.Component {
     render() {
         return (
-            <div className="preview-wrapper col-8">
-                <div className="row">
+            <div className="preview-wrapper">
+                <div className="row heading-preview">
                     <div className="col-8">
                         <h4 className="titulo-meme">
                             {this.props.dataMeme.title}
@@ -19,13 +19,13 @@ class MemePreview extends React.Component {
                         <VoteMemes meme={this.props.dataMeme}></VoteMemes>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-2">
                     <div className="col-12">
                         <div className="card w-100 meme-container" style={{ backgroundImage: `url(${this.props.dataMeme.image})`, height: '300px' }}>
                         </div>
                     </div>
                 </div>
-                <div className="row mt-2">
+                <div className="row mt-2 footer-preview">
                     <div className="col-6">
                     </div>
                     <div className="col-md-6 col-sm-12 d-flex justify-content-end">

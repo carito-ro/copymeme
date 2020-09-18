@@ -19,10 +19,10 @@ class Main extends React.Component {
       const response = await fetch(`http://127.0.0.1:5000/categories`);
       const json = await response.json();
       if (this.props.match.params.category) {
-        response1 = await fetch(`http://127.0.0.1:5000/memes?categoryId=` + this.props.match.params.category);
+        response1 = await fetch(`http://127.0.0.1:5000/memes?limit=4&categoryId=` + this.props.match.params.category);
         json1 = await response1.json();
       } else {
-        response1 = await fetch(`http://127.0.0.1:5000/memes`);
+        response1 = await fetch(`http://127.0.0.1:5000/memes?limit=4`);
         json1 = await response1.json();
       }
       this.setState({

@@ -26,10 +26,19 @@ router.get('/:id', async function (req, res) {
 router.get('/', async function (req, res) {
     try {
         let query = {};
+        let memes = [];
         if (req.query.categoryId) {
             query.category = req.query.categoryId;
         };
-        const memes = await Meme.find(query).populate('author', 'name email').populate('category');
+        if (req.query.limit) {
+            let start = 0;
+            if (req.query.start) {
+                start = parseInt(req.query.start);
+            }
+            memes = await Meme.find(query).skip(start).limit(parseInt(req.query.limit)).populate('author', 'name email').populate('category');
+        } else {
+            memes = await Meme.find(query).populate('author', 'name email').populate('category');
+        }
         if (!memes) {
             return res.status(404).send({
                 success: false,

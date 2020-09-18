@@ -1,5 +1,7 @@
 import React from 'react';
 import '../assets/css/styles.scss';
+import { Redirect } from 'react-router-dom';
+import { userContext } from '../userContext';
 
 class AddMeme extends React.Component {
     constructor (props) {
@@ -91,61 +93,71 @@ class AddMeme extends React.Component {
         else {
             alert = null;
         }
-        return (
-            <div className="row d-flex justify-content-center align-items-center">
-                <div className="form w-50">
-                    <form className="form mt-5" method="POST" onSubmit={this.handleSubmit}>
-                        {alert}
-                        <div className="row">
-                            <div className="col-12">
-                                <input className="form-control" type="text" placeholder="Titulo" name="titulo" value={this.state.titulo}
-                                    onChange={this.handleTitleChange} />
+        return <userContext.Consumer>
+            {({ authenticated }) => {
+                if (!authenticated) {
+                    return <Redirect to="/" />;
+                } else {
+                    return (
+                        <div className="row d-flex justify-content-center align-items-center">
+                            <div className="form w-50">
+                                <h3 className="mt-5 text-center">Cargar nuevo meme</h3>
+                                <hr></hr>
+                                <form className="form mt-5" method="POST" onSubmit={this.handleSubmit}>
+                                    {alert}
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <input className="form-control" type="text" placeholder="Titulo" name="titulo" value={this.state.titulo}
+                                                onChange={this.handleTitleChange} />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <textarea className="form-control" type="text" placeholder="Descripción" name="description" value={this.state.descripcion}
+                                                onChange={this.handleDescriptionChange} />
+                                        </div>
+                                    </div>
+                                    <div className="row mt-2">
+                                        <div className="col-12">
+                                            <select name="category" className="form-control custom-select" value={this.state.category} placeholder="Seleccione una categoria"
+                                                onChange={this.handleCategoryChange}>
+                                                <option selected>Seleccione una categoria</option>
+                                                {this.state.categories.map(cat => {
+                                                    return (
+                                                        <option value={cat._id}>{cat.name}</option>
+                                                    );
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="row mt-2">
+                                        <div className="col-12 d-flex justify-content-center align-items-center">
+                                            {this.state.subioImagen &&
+                                                <img src={this.state.imagen} alt="" className="card-img-top w-25"></img>
+                                            }
+                                            {!this.state.subioImagen &&
+                                                <button type="button" className="btn btn-primary" onClick={() => this.showWidget(widget)}>Seleccionar imagen</button>
+                                            }
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div className="row mt-2">
+                                        <div className="col-12">
+                                            {this.state.subioImagen &&
+                                                <button type="submit" className="btn btn-primary">Agregar</button>
+                                            }
+                                            {!this.state.subioImagen &&
+                                                <button disabled type="button" className="btn btn-primary">Agregar</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12">
-                                <textarea className="form-control" type="text" placeholder="Descripción" name="description" value={this.state.descripcion}
-                                    onChange={this.handleDescriptionChange} />
-                            </div>
-                        </div>
-                        <div className="row mt-2">
-                            <div className="col-12">
-                                <select name="category" className="form-control custom-select" value={this.state.category} placeholder="Seleccione una categoria"
-                                    onChange={this.handleCategoryChange}>
-                                    <option selected>Seleccione una categoria</option>
-                                    {this.state.categories.map(cat => {
-                                        return (
-                                            <option value={cat._id}>{cat.name}</option>
-                                        );
-                                    })}
-                                </select>
-                            </div>
-                        </div>
-                        <div className="row mt-2">
-                            <div className="col-12 d-flex justify-content-center align-items-center">
-                                {this.state.subioImagen &&
-                                    <img src={this.state.imagen} alt="" className="card-img-top w-25"></img>
-                                }
-                                {!this.state.subioImagen &&
-                                    <button type="button" className="btn btn-primary" onClick={() => this.showWidget(widget)}>Seleccionar imagen</button>
-                                }
-                            </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row mt-2">
-                            <div className="col-12">
-                                {this.state.subioImagen &&
-                                    <button type="submit" className="btn btn-primary">Agregar</button>
-                                }
-                                {!this.state.subioImagen &&
-                                    <button disabled type="button" className="btn btn-primary">Agregar</button>
-                                }
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div >
-        )
+                        </div >
+                    )
+                }
+            }}
+        </userContext.Consumer>
     }
 
 }

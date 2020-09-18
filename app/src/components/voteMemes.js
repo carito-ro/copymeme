@@ -12,7 +12,6 @@ class VoteMemes extends React.Component {
 
   guardar = async (voto) => {
     var url = 'http://127.0.0.1:5000/votes';
-
     await fetch(url, {
       method: 'POST',
       headers: {
@@ -23,7 +22,7 @@ class VoteMemes extends React.Component {
       .then((res) => res.json())
       .catch((error) => console.error('Error:', error))
       .then((response) => {
-        // Actualizar el listado de memes.
+        window.location.reload(false);
       });
   };
 

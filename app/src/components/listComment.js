@@ -37,7 +37,6 @@ class ListComment extends React.Component {
         }
     }
     insertarComment = async (nuevoComment) => {
-        console.log(nuevoComment);
         try {
             const response = await fetch(`http://127.0.0.1:5000/comments`, {
                 method: 'POST',
@@ -46,8 +45,7 @@ class ListComment extends React.Component {
                 },
                 body: JSON.stringify(nuevoComment),
             });
-            const json = await response.json();
-            console.log(json);
+            await response.json();
             this.setState({
                 isNewComment: true
             });

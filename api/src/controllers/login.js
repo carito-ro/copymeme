@@ -9,7 +9,6 @@ const router = express.Router(),
 router.post('/', async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
-  console.log(email);
   try {
     let query = { email: email };
     const db = await connection();

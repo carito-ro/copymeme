@@ -14,10 +14,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var router = _express["default"].Router(),
-    jwt = require('jsonwebtoken'),
-    connection = require('../connection'),
-    config = require('../configs/config'),
-    bcrypt = require('bcryptjs');
+  jwt = require('jsonwebtoken'),
+  connection = require('../connection'),
+  config = require('../configs/config'),
+  bcrypt = require('bcryptjs');
 
 router.post('/', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
@@ -28,7 +28,6 @@ router.post('/', /*#__PURE__*/function () {
           case 0:
             email = req.body.email;
             password = req.body.password;
-            console.log(email);
             _context.prev = 3;
             query = {
               email: email

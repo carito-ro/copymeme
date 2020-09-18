@@ -6,9 +6,11 @@ const router = express.Router();
 router.get('/:idMeme', async function (req, res) {
   try {
     const idMeme = req.params.idMeme;
-    const votos = await Vote.find({
-      meme: idMeme,
-    });
+    let query = { meme: idMeme };
+    if (req.query.userId) {
+      query.author = req.query.userId;
+    };
+    const votos = await Vote.find(query);
     if (!votos) {
       return res.status(404).send({
         success: false,
@@ -37,8 +39,6 @@ router.post('/', async function (req, res) {
     const memeDoc = await Meme.findById(query)
       .populate('author', 'name email')
       .populate('category');
-
-    console.log(memeDoc);
     if (memeDoc) {
       if (type === 1) {
         memeDoc.positiveVotesCount += 1;

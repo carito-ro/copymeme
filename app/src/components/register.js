@@ -1,5 +1,7 @@
 import React from 'react';
 import '../assets/css/styles.scss';
+import { Redirect } from 'react-router-dom';
+import { userContext } from '../userContext';
 
 class Register extends React.Component {
   constructor (props) {
@@ -120,69 +122,79 @@ class Register extends React.Component {
       alert = null;
     }
     return (
-      <div className="register-wrapper">
-        <div className="row">
-          <div className="col-sm-12 d-flex justify-content-center align-items-center">
-            <div className="form">
-              <div className="logo"></div>
-              {alert}
-              <form className="login-form" onSubmit={this.handleSubmit}>
+      <userContext.Consumer>
+        {({ authenticated }) => {
+          if (authenticated) {
+            return <Redirect to="/" />;
+          } else {
+            return (
+              <div className="register-wrapper">
                 <div className="row">
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      placeholder="Email"
-                      value={this.state.email}
-                      onChange={this.handleEmailChange}
-                      required
-                      maxLength="40"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      placeholder="Nombre completo"
-                      value={this.state.nombre}
-                      onChange={this.handleNombreChange}
-                      required
-                      maxLength="100"
-                    />
+                  <div className="col-sm-12 d-flex justify-content-center align-items-center">
+                    <div className="form">
+                      <div className="logo"></div>
+                      {alert}
+                      <form className="login-form" onSubmit={this.handleSubmit}>
+                        <div className="row">
+                          <div className="col-12">
+                            <input
+                              type="text"
+                              placeholder="Email"
+                              value={this.state.email}
+                              onChange={this.handleEmailChange}
+                              required
+                              maxLength="40"
+                            />
+                          </div>
+                          <div className="col-12">
+                            <input
+                              type="text"
+                              placeholder="Nombre completo"
+                              value={this.state.nombre}
+                              onChange={this.handleNombreChange}
+                              required
+                              maxLength="100"
+                            />
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-6">
+                            <input
+                              type="password"
+                              placeholder="Contraseña"
+                              value={this.state.password}
+                              onChange={this.handlePasswordChange}
+                              required
+                              maxLength="15"
+                            />
+                          </div>
+                          <div className="col-6">
+                            <input
+                              type="password"
+                              placeholder="Confirme contraseña"
+                              value={this.state.passwordConfirm}
+                              onChange={this.handlePasswordConfirmChange}
+                              required
+                              maxLength="15"
+                            />
+                          </div>
+                        </div>
+                        <button type="submit" className="yellow">
+                          Registrarme
+                        </button>
+                        <hr></hr>
+                        <a className="btn-link" href="/login">
+                          <small>Volver</small>
+                        </a>
+                      </form>
+                    </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-6">
-                    <input
-                      type="password"
-                      placeholder="Contraseña"
-                      value={this.state.password}
-                      onChange={this.handlePasswordChange}
-                      required
-                      maxLength="15"
-                    />
-                  </div>
-                  <div className="col-6">
-                    <input
-                      type="password"
-                      placeholder="Confirme contraseña"
-                      value={this.state.passwordConfirm}
-                      onChange={this.handlePasswordConfirmChange}
-                      required
-                      maxLength="15"
-                    />
-                  </div>
-                </div>
-                <button type="submit" className="yellow">
-                  Registrarme
-                </button>
-                <hr></hr>
-                <a className="btn-link" href="/login">
-                  <small>Volver</small>
-                </a>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+              </div>
+            )
+          }
+        }}
+      </userContext.Consumer>
     );
   }
 }

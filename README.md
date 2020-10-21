@@ -1,5 +1,5 @@
-## Diplomatura - Desarrollo full-stack de aplicaciones Web con Javascript - Trabajo Final (Aprobado)
-# Copymeme - Meme social network
+## Diplomatura - Desarrollo full-stack de aplicaciones Web con Javascript - [Trabajo Final (Aprobado)](http://wene.fi.uncoma.edu.ar/certificado/view?hash=85613a)
+# Copymeme - Meme social network 
 Copymeme es una red social para publicar memes, comentar y votar los mejores chistes.
 
 Este trabajo es un ejercicio integrador de los diferentes temas que se fueron dictando

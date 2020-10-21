@@ -9,11 +9,11 @@ El entregable del trabajo es una aplicación web responsive, cross-browser utili
 tecnologías antes mencionadas, junto con su código fuente.
 
 Integrantes: 
-
-- Matias Manzanelli (lmanzanelli)
-- Martin Bucarey (martinebucarey)
-- Juliana Otero (juuliotero)
 - Carolina Robles (carito-ro)
+- Juliana Otero (juuliotero)
+- Martin Bucarey (martinebucarey)
+- Matias Manzanelli (lmanzanelli)
+
 
 
 
